@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Guardian — Terms of Use</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a2e; color: #e0e0e0; line-height: 1.7;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        header {
+            background-color: #16213e; border-bottom: 1px solid #0f3460;
+            padding: 2rem 1rem; text-align: center;
+        }
+        header h1 { font-size: 2rem; font-weight: 700; color: #e94560; margin-bottom: 0.25rem; }
+        header p { font-size: 0.95rem; color: #8892a4; }
+        main { max-width: 720px; margin: 2.5rem auto; padding: 0 1.5rem; flex: 1; }
+        h2 {
+            font-size: 1.3rem; color: #e94560; margin-top: 2rem; margin-bottom: 0.75rem;
+            border-bottom: 1px solid #0f3460; padding-bottom: 0.4rem;
+        }
+        h3 { font-size: 1.05rem; color: #c8c8d0; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+        p, li { font-size: 1rem; color: #c8c8d0; margin-bottom: 0.75rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        ul li { list-style-type: disc; }
+        a { color: #e94560; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .card {
+            background-color: #16213e; border: 1px solid #0f3460;
+            border-radius: 10px; padding: 1.75rem; margin-bottom: 1.5rem;
+        }
+        .warning {
+            background-color: #2d1b1b; border: 1px solid #e94560;
+            border-radius: 10px; padding: 1.75rem; margin-bottom: 1.5rem;
+        }
+        .warning h3 { color: #e94560; }
+        .caps { text-transform: uppercase; font-weight: 600; font-size: 0.92rem; color: #a0a0a8; }
+        .effective-date { font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem; }
+        footer {
+            text-align: center; padding: 1.5rem 1rem; font-size: 0.85rem;
+            color: #555; border-top: 1px solid #0f3460;
+        }
+        nav.page-links { text-align: center; margin-bottom: 1rem; }
+        nav.page-links a { margin: 0 0.75rem; font-size: 0.9rem; color: #8892a4; }
+        nav.page-links a:hover { color: #e94560; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>System Guardian</h1>
+        <p>Terms of Use</p>
+    </header>
+
+    <main>
+        <nav class="page-links">
+            <a href="index.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="support.html">Support</a>
+        </nav>
+
+        <div class="card">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using System Guardian ("the App"), you agree to be bound by these Terms of Use. If you do not agree, do not install or use the App.</p>
+            <p class="effective-date">Effective date: February 15, 2026</p>
+        </div>
+
+        <div class="card">
+            <h2>2. Description of Service</h2>
+            <p>System Guardian is a macOS menu bar utility that monitors system performance (memory, CPU, GPU) and provides tools to manage system resources, including:</p>
+            <ul>
+                <li>Real-time monitoring of memory usage, CPU load, and GPU utilization</li>
+                <li>Display of running processes with resource consumption data</li>
+                <li>Manual and automated memory cleaning operations</li>
+                <li>Process management (force quit)</li>
+                <li>Local notifications for system performance alerts</li>
+                <li>Configurable thresholds and automated protection rules</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <h2>3. System-Level Operations — Important Warnings</h2>
+
+            <h3>⚠️ Process Termination</h3>
+            <p>System Guardian can terminate (force quit) running processes at your request or automatically when configured. <strong>Terminating a process immediately ends that application, and any unsaved work is permanently lost.</strong> You are solely responsible for saving your work.</p>
+
+            <h3>⚠️ Automated Process Termination (Auto-Kill)</h3>
+            <p>When Auto-Kill is enabled, the App may automatically terminate processes exceeding your configured memory threshold <strong>without additional confirmation</strong>. By enabling this feature, you accept that:</p>
+            <ul>
+                <li>Processes may be terminated without prior warning</li>
+                <li>Unsaved data in terminated applications will be lost</li>
+                <li>You have configured the memory threshold appropriately</li>
+                <li>Critical system processes (Finder, Dock, WindowServer, etc.) are always protected</li>
+            </ul>
+
+            <h3>⚠️ Memory Cleaning</h3>
+            <p><strong>Deep Clean</strong> temporarily allocates significant system memory to force kernel cache eviction. During this operation, your system may become temporarily unresponsive and applications with low memory tolerance may crash.</p>
+        </div>
+
+        <div class="card">
+            <h2>4. User Responsibilities</h2>
+            <p>You are responsible for:</p>
+            <ul>
+                <li><strong>Saving all work</strong> before using process management features</li>
+                <li>Configuring automated features with appropriate thresholds</li>
+                <li><strong>Maintaining backups</strong> of important data</li>
+                <li>Understanding the consequences of system-level operations</li>
+                <li>Ensuring the App is suitable for your intended use</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>5. Disclaimer of Warranties</h2>
+            <p class="caps">THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+            <p class="caps">THE DEVELOPER DOES NOT WARRANT THAT THE APP WILL MEET YOUR REQUIREMENTS, OPERATE WITHOUT INTERRUPTION, OR BE COMPATIBLE WITH ALL MACOS CONFIGURATIONS.</p>
+        </div>
+
+        <div class="card">
+            <h2>6. Limitation of Liability</h2>
+            <p class="caps">TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE DEVELOPER SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:</p>
+            <ul>
+                <li>Loss of data, work, or unsaved content</li>
+                <li>System crashes, instability, or performance degradation</li>
+                <li>Damages from automated features (auto-kill, auto-purge, scheduled cleaning)</li>
+                <li>Loss of profits, revenue, or business opportunities</li>
+                <li>Corruption of data or system files</li>
+            </ul>
+            <p class="caps">THE DEVELOPER'S TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE APP IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM, OR €5.00, WHICHEVER IS GREATER.</p>
+            <p>In the EU, this does not affect your statutory consumer rights.</p>
+        </div>
+
+        <div class="card">
+            <h2>7. Indemnification</h2>
+            <p>You agree to indemnify and hold harmless the Developer from any claims, damages, or expenses arising from your use or misuse of the App, violation of these Terms, or violation of any applicable law.</p>
+        </div>
+
+        <div class="card">
+            <h2>8. Governing Law</h2>
+            <p>These Terms are governed by the laws of the Republic of Lithuania. For EU consumers, mandatory consumer protection laws of your country of residence also apply. You may use the <a href="https://ec.europa.eu/consumers/odr" target="_blank">EU Online Dispute Resolution platform</a>.</p>
+        </div>
+
+        <div class="card">
+            <h2>Contact</h2>
+            <p>For questions about these Terms, contact: <a href="mailto:info@khaeldur.com">info@khaeldur.com</a></p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Mantvydas Vaitkaitis. All rights reserved.
+    </footer>
+</body>
+</html>
