@@ -85,7 +85,7 @@
                     <div class="faq-answer">
                         <ul>
                             <li><strong>macOS:</strong> 13.0 (Ventura) or later</li>
-                            <li><strong>Architecture:</strong> Apple Silicon and Intel (Universal Binary)</li>
+                            <li><strong>Architecture:</strong> Apple Silicon (M1 or later)</li>
                             <li><strong>Disk Space:</strong> ~6 MB</li>
                             <li><strong>RAM Overhead:</strong> ~15-25 MB</li>
                         </ul>
@@ -340,7 +340,7 @@
                 <details class="faq-item">
                     <summary>How is GPU data collected?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian reads GPU telemetry from IOKit's <code>IOAccelerator</code> service, querying the <code>PerformanceStatistics</code> dictionary. This works on both Apple Silicon (integrated GPU) and Intel Macs with discrete GPUs.</p>
+                        <p>System Guardian reads GPU telemetry from IOKit's <code>IOAccelerator</code> service, querying the <code>PerformanceStatistics</code> dictionary. This works with Apple Silicon GPUs (M1 and later).</p>
                     </div>
                 </details>
 
