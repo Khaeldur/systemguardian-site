@@ -3,197 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Guardian — Privacy Policy</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background-color: #16213e;
-            border-bottom: 1px solid #0f3460;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #e94560;
-            margin-bottom: 0.25rem;
-        }
-
-        header p {
-            font-size: 0.95rem;
-            color: #8892a4;
-        }
-
-        main {
-            max-width: 720px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
-            flex: 1;
-        }
-
-        h2 {
-            font-size: 1.3rem;
-            color: #e94560;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-            border-bottom: 1px solid #0f3460;
-            padding-bottom: 0.4rem;
-        }
-
-        p, li {
-            font-size: 1rem;
-            color: #c8c8d0;
-            margin-bottom: 0.75rem;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        ul li::before {
-            content: "\2713";
-            color: #53d769;
-            font-weight: bold;
-            margin-right: 0.6rem;
-        }
-
-        a {
-            color: #e94560;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .card {
-            background-color: #16213e;
-            border: 1px solid #0f3460;
-            border-radius: 10px;
-            padding: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .effective-date {
-            font-size: 0.85rem;
-            color: #6b7280;
-            margin-top: 0.5rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            font-size: 0.85rem;
-            color: #555;
-            border-top: 1px solid #0f3460;
-        }
-
-        nav.page-links {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        nav.page-links a {
-            margin: 0 0.75rem;
-            font-size: 0.9rem;
-            color: #8892a4;
-        }
-
-        nav.page-links a:hover {
-            color: #e94560;
-        }
-    </style>
+    <title>System Guardian — Real-Time Mac System Monitor</title>
+    <meta name="description" content="Real-time system monitoring and intelligent memory management for your Mac. CPU, GPU, memory — zero telemetry, zero dependencies.">
+    <meta property="og:title" content="System Guardian — Mac System Monitor">
+    <meta property="og:description" content="Real-time system monitoring and intelligent memory management for your Mac.">
+    <meta property="og:image" content="images/app-icon-256.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>System Guardian</h1>
-        <p>Privacy Policy</p>
-    </header>
 
-    <main>
-        <nav class="page-links">
-            <a href="index.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <a href="support.html">Support</a>
-        </nav>
-
-        <div class="card">
-            <h2>Overview</h2>
-            <p>
-                System Guardian is a macOS system monitoring application built with your
-                privacy as the foremost priority. The app collects
-                <strong>no personal data whatsoever</strong>.
-            </p>
-            <p class="effective-date">Effective date: February 15, 2026</p>
-        </div>
-
-        <div class="card">
-            <h2>No Data Collection</h2>
-            <p>System Guardian does not collect, store, or transmit any personal information. Specifically:</p>
-            <ul>
-                <li>No analytics or usage tracking</li>
-                <li>No telemetry of any kind</li>
-                <li>No network connections are made by the app</li>
-                <li>No crash reports are sent externally</li>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/favicon.png" alt="System Guardian icon" width="32" height="32">
+                System Guardian
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><span class="separator"></span></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
             </ul>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
+    </nav>
 
-        <div class="card">
-            <h2>On-Device Only</h2>
-            <p>
-                All system monitoring data — including CPU, memory, disk, and
-                network statistics — stays entirely on your device. Nothing
-                leaves your Mac.
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="images/app-icon-256.png" alt="System Guardian app icon" class="hero-icon" width="128" height="128">
+            <h1>System Guardian</h1>
+            <p class="hero-tagline">Real-time system monitoring and intelligent memory management for your Mac. Clean, focused, and private.</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download
+                </a>
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+            <img src="images/screenshot-menu.png" alt="System Guardian menu bar dropdown showing real-time system health" class="hero-image" width="600">
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">&#8595;</div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+        <div class="container text-center">
+            <span class="section-label animate-in">Features</span>
+            <h2 class="section-title animate-in">Everything your Mac needs, nothing it doesn't.</h2>
+            <p class="section-subtitle animate-in">Kernel-level accuracy with zero network requests. Built entirely with Apple frameworks.</p>
+
+            <div class="grid-3">
+                <div class="glass-card animate-in delay-1">
+                    <span class="card-icon">&#128202;</span>
+                    <h3>Real-Time Memory</h3>
+                    <p>Free, used, wired, compressed, and swap — all from the Mach kernel via <code>host_statistics64</code>. Updates every poll cycle.</p>
+                </div>
+                <div class="glass-card animate-in delay-2">
+                    <span class="card-icon">&#9881;&#65039;</span>
+                    <h3>CPU Monitoring</h3>
+                    <p>Per-core delta sampling via <code>host_processor_info</code>. User, system, and idle breakdown with configurable spike alerts.</p>
+                </div>
+                <div class="glass-card animate-in delay-3">
+                    <span class="card-icon">&#127918;</span>
+                    <h3>GPU Telemetry</h3>
+                    <p>Device, renderer, and tiler utilization from IOKit's <code>IOAccelerator</code>. Works with Apple Silicon and Intel GPUs.</p>
+                </div>
+                <div class="glass-card animate-in delay-1">
+                    <span class="card-icon">&#128167;</span>
+                    <h3>Memory Cleaning</h3>
+                    <p>Quick Clean releases allocator caches. Deep Clean forces kernel cache eviction. Both with adaptive safety caps for your hardware.</p>
+                </div>
+                <div class="glass-card animate-in delay-2">
+                    <span class="card-icon">&#128737;&#65039;</span>
+                    <h3>Automated Protection</h3>
+                    <p>Low RAM auto-clean, runaway process auto-kill, CPU spike alerts, and scheduled cleaning — all with configurable thresholds.</p>
+                </div>
+                <div class="glass-card animate-in delay-3">
+                    <span class="card-icon">&#128736;&#65039;</span>
+                    <h3>Process Management</h3>
+                    <p>Top processes by CPU or memory with pause, resume, and force quit. Not-responding detection via the same mechanism as Finder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section id="screenshots" style="background: var(--bg-deep);">
+        <div class="container text-center">
+            <span class="section-label animate-in">Screenshots</span>
+            <h2 class="section-title animate-in">See it in action.</h2>
+            <p class="section-subtitle animate-in">From the menu bar to the full dashboard — every detail designed for clarity.</p>
+
+            <div class="screenshot-gallery">
+                <img src="images/screenshot-dashboard.png" alt="Complete system dashboard with CPU, memory, and GPU gauges" class="animate-in screenshot-wide" loading="lazy" width="800">
+                <img src="images/screenshot-general.png" alt="Settings - automatic memory protection with configurable thresholds" class="animate-in delay-1" loading="lazy">
+                <img src="images/screenshot-advanced.png" alt="Settings - advanced process control and CPU spike alerts" class="animate-in delay-2" loading="lazy">
+                <img src="images/screenshot-deepclean.png" alt="Deep clean memory warning and configuration" class="animate-in delay-3" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label animate-in">Under the Hood</span>
+                <h2 class="section-title animate-in">Kernel-level accuracy. Zero overhead.</h2>
+                <p class="section-subtitle animate-in">Direct API calls to macOS internals — no shell wrappers, no polling hacks.</p>
+            </div>
+
+            <table class="tech-table animate-in">
+                <thead>
+                    <tr>
+                        <th>Subsystem</th>
+                        <th>API</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Memory</td>
+                        <td>Mach kernel</td>
+                        <td><code>host_statistics64(HOST_VM_INFO64)</code></td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Mach kernel</td>
+                        <td><code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code></td>
+                    </tr>
+                    <tr>
+                        <td>GPU</td>
+                        <td>IOKit</td>
+                        <td><code>IOAccelerator</code> &rarr; <code>PerformanceStatistics</code></td>
+                    </tr>
+                    <tr>
+                        <td>Swap</td>
+                        <td>sysctl</td>
+                        <td><code>vm.swapusage</code></td>
+                    </tr>
+                    <tr>
+                        <td>Processes</td>
+                        <td>POSIX</td>
+                        <td><code>/bin/ps</code> via <code>Process()</code> (no shell)</td>
+                    </tr>
+                    <tr>
+                        <td>Quick Clean</td>
+                        <td>libc</td>
+                        <td><code>malloc_zone_pressure_relief(nil, 0)</code></td>
+                    </tr>
+                    <tr>
+                        <td>Deep Clean</td>
+                        <td>libc</td>
+                        <td><code>malloc</code> + <code>memset</code> pressure &rarr; <code>free</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Privacy -->
+    <section id="privacy" style="background: var(--bg-deep);">
+        <div class="container text-center">
+            <span class="section-label animate-in">Privacy First</span>
+            <h2 class="section-title animate-in">Your data never leaves your Mac.</h2>
+            <p class="section-subtitle animate-in">No analytics. No telemetry. No network connections. Not even an update check.</p>
+
+            <div class="privacy-grid">
+                <div class="privacy-item animate-in delay-1">
+                    <span class="privacy-icon">&#128274;</span>
+                    <div>
+                        <h4>Zero Network Requests</h4>
+                        <p>The app makes absolutely no internet connections of any kind.</p>
+                    </div>
+                </div>
+                <div class="privacy-item animate-in delay-2">
+                    <span class="privacy-icon">&#128200;</span>
+                    <div>
+                        <h4>No Analytics or Tracking</h4>
+                        <p>No telemetry, no crash reports sent externally, no usage data collected.</p>
+                    </div>
+                </div>
+                <div class="privacy-item animate-in delay-3">
+                    <span class="privacy-icon">&#128230;</span>
+                    <div>
+                        <h4>No Third-Party Dependencies</h4>
+                        <p>Built exclusively with Apple first-party frameworks. Zero external SDKs.</p>
+                    </div>
+                </div>
+                <div class="privacy-item animate-in delay-4">
+                    <span class="privacy-icon">&#128187;</span>
+                    <div>
+                        <h4>All Data On-Device</h4>
+                        <p>System metrics, settings, and logs stay entirely on your Mac.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="privacy.html" class="btn btn-outline btn-small">Read Full Privacy Policy</a>
+        </div>
+    </section>
+
+    <!-- Specs -->
+    <section id="specs">
+        <div class="container text-center">
+            <span class="section-label animate-in">Specifications</span>
+            <h2 class="section-title animate-in">Lightweight by design.</h2>
+
+            <div class="spec-grid animate-in">
+                <div class="spec-item">
+                    <span class="spec-value">macOS 13+</span>
+                    <span class="spec-label">Ventura or later</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">Universal</span>
+                    <span class="spec-label">Apple Silicon &amp; Intel</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">~6 MB</span>
+                    <span class="spec-label">App size on disk</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">15-25 MB</span>
+                    <span class="spec-label">RAM usage</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">100% Swift</span>
+                    <span class="spec-label">SwiftUI + AppKit</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">~2,400</span>
+                    <span class="spec-label">Lines of code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section id="download" class="cta-section">
+        <div class="container text-center">
+            <span class="section-label animate-in">Get Started</span>
+            <h2 class="section-title animate-in">Download System Guardian</h2>
+            <p class="section-subtitle animate-in">Available on the Mac App Store and as a direct download.</p>
+
+            <div class="hero-buttons animate-in">
+                <a href="#" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Mac App Store
+                </a>
+                <a href="https://github.com/mant0u0/GuardianMonitor" target="_blank" rel="noopener" class="btn btn-outline">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+
+            <p class="animate-in" style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+                Questions? Reach out at <a href="mailto:info@khaeldur.com">info@khaeldur.com</a>
             </p>
         </div>
+    </section>
 
-        <div class="card">
-            <h2>First-Party Frameworks Only</h2>
-            <p>
-                System Guardian is built exclusively with Apple first-party
-                frameworks. There are <strong>no third-party libraries,
-                SDKs, or services</strong> embedded in the application.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>No Third-Party Services</h2>
-            <p>
-                The app does not integrate with any third-party services,
-                advertising networks, or data brokers. Your system data is
-                never shared with anyone.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>Contact</h2>
-            <p>
-                If you have any questions about this privacy policy, please
-                contact us at
-                <a href="mailto:info@khaeldur.com">info@khaeldur.com</a>.
-            </p>
-        </div>
-    </main>
-
-    <footer>
-        &copy; 2026 Mantvydas Vaitkaitis. All rights reserved.
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+        <p class="footer-credit">&copy; 2026 Mantvydas Vaitkaitis. All rights reserved.</p>
+        <p class="footer-built">Built with Swift and SwiftUI for macOS.</p>
     </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

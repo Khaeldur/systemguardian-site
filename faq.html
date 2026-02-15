@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Guardian — Frequently Asked Questions</title>
+    <meta name="description" content="Complete FAQ for System Guardian. Answers about memory monitoring, CPU tracking, GPU telemetry, process management, automated protections, and more.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/favicon.png" alt="System Guardian icon" width="32" height="32">
+                System Guardian
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><span class="separator"></span></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>A complete guide to every feature in System Guardian.</p>
+    </div>
+
+    <!-- FAQ Layout -->
+    <div class="faq-layout">
+
+        <!-- Sidebar TOC (desktop only) -->
+        <aside class="faq-sidebar">
+            <a href="#getting-started">Getting Started</a>
+            <a href="#menu-bar">Menu Bar</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#memory-monitoring">Memory Monitoring</a>
+            <a href="#memory-cleaning">Memory Cleaning</a>
+            <a href="#cpu-monitoring">CPU Monitoring</a>
+            <a href="#gpu-monitoring">GPU Monitoring</a>
+            <a href="#process-management">Process Management</a>
+            <a href="#automated-protections">Automated Protections</a>
+            <a href="#scheduled-cleaning">Scheduled Cleaning</a>
+            <a href="#notifications">Notifications</a>
+            <a href="#settings-general">Settings &mdash; General</a>
+            <a href="#settings-advanced">Settings &mdash; Advanced</a>
+            <a href="#events-log">Events Log</a>
+            <a href="#hardware-defaults">Hardware-Aware Defaults</a>
+            <a href="#privacy-security">Privacy &amp; Security</a>
+            <a href="#technical-details">Technical Details</a>
+            <a href="#troubleshooting">Troubleshooting</a>
+        </aside>
+
+        <!-- FAQ Content -->
+        <div class="faq-main">
+            <input type="text" class="faq-search" placeholder="Search questions..." aria-label="Search FAQ">
+
+            <!-- Getting Started -->
+            <div class="faq-section" id="getting-started">
+                <h2>Getting Started</h2>
+
+                <details class="faq-item">
+                    <summary>What is System Guardian?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian is a native macOS menu bar app that monitors your Mac's CPU, GPU, and memory in real time. It uses direct kernel APIs to provide accurate telemetry and can automatically clean memory, kill runaway processes, and alert you when things go wrong.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What are the system requirements?</summary>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>macOS:</strong> 13.0 (Ventura) or later</li>
+                            <li><strong>Architecture:</strong> Apple Silicon and Intel (Universal Binary)</li>
+                            <li><strong>Disk Space:</strong> ~6 MB</li>
+                            <li><strong>RAM Overhead:</strong> ~15-25 MB</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do I install it?</summary>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Download from the Mac App Store or from the GitHub releases page.</li>
+                            <li>If using the DMG, open it and drag <strong>System Guardian</strong> to your Applications folder.</li>
+                            <li>Launch the app &mdash; a shield icon appears in your menu bar.</li>
+                            <li>Optionally enable "Launch at Login" in Settings.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Does it require administrator privileges?</summary>
+                    <div class="faq-answer">
+                        <p>No. System Guardian runs entirely in user space. It accesses kernel telemetry through standard Mach APIs that are available to any user process, and sends POSIX signals (pause, resume, kill) to processes you own. It cannot affect processes owned by root or other users.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Menu Bar -->
+            <div class="faq-section" id="menu-bar">
+                <h2>Menu Bar</h2>
+
+                <details class="faq-item">
+                    <summary>What does the menu bar icon mean?</summary>
+                    <div class="faq-answer">
+                        <table>
+                            <thead><tr><th>Icon</th><th>Color</th><th>Meaning</th></tr></thead>
+                            <tbody>
+                                <tr><td>Shield with checkmark</td><td>Green</td><td><strong>Nominal</strong> &mdash; System is healthy</td></tr>
+                                <tr><td>Exclamation circle</td><td>Yellow</td><td><strong>Warning</strong> &mdash; Memory pressure is elevated</td></tr>
+                                <tr><td>X octagon</td><td>Red</td><td><strong>Critical</strong> &mdash; Memory pressure is severe</td></tr>
+                                <tr><td>Warning triangle</td><td>Yellow</td><td><strong>High-memory process</strong> &mdash; A process exceeds your memory limit</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does the number next to the icon mean?</summary>
+                    <div class="faq-answer">
+                        <p>The number shows your current <strong>free memory in GB</strong> (e.g., "12 GB"). This updates every poll cycle (default: 5 seconds).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What do I see when I click the menu bar icon?</summary>
+                    <div class="faq-answer">
+                        <ol>
+                            <li><strong>Health header</strong> &mdash; A one-line status sentence</li>
+                            <li><strong>Pressure detail</strong> &mdash; Free GB, Swap GB, and Compressed GB breakdown</li>
+                            <li><strong>Process count and free GB</strong></li>
+                            <li><strong>Clean Memory / Deep Clean Memory</strong> buttons</li>
+                            <li><strong>Top 5 Processes</strong> &mdash; Sorted by CPU or Memory, each with a submenu</li>
+                            <li><strong>Open Dashboard</strong> &mdash; Opens the full dashboard window</li>
+                            <li><strong>Settings</strong> and <strong>Quit</strong></li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What do the colored dots next to processes mean?</summary>
+                    <div class="faq-answer">
+                        <table>
+                            <thead><tr><th>Dot Color</th><th>Meaning</th></tr></thead>
+                            <tbody>
+                                <tr><td>Green</td><td>Process is running normally</td></tr>
+                                <tr><td>Yellow</td><td>Process is paused (you sent SIGSTOP)</td></tr>
+                                <tr><td>Red</td><td>Process is not responding or exceeds CPU/memory limits</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="faq-section" id="dashboard">
+                <h2>Dashboard</h2>
+
+                <details class="faq-item">
+                    <summary>What is the Dashboard?</summary>
+                    <div class="faq-answer">
+                        <p>The Dashboard is a resizable window with a full overview of your system. It contains a health gauge ring, a pressure sparkline chart, detailed memory/CPU/GPU cards, a process list with inline controls, and an events log.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does the health gauge ring show?</summary>
+                    <div class="faq-answer">
+                        <p>The ring fills based on the ratio of used memory to total memory. Colors: <strong>Green</strong> (nominal, under 75%), <strong>Orange</strong> (warning, 75-90%), <strong>Red</strong> (critical, over 90%). The icon inside changes accordingly.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is the pressure sparkline?</summary>
+                    <div class="faq-answer">
+                        <p>A small area chart tracking your free memory over the last 5 minutes (up to 60 samples). It uses Catmull-Rom interpolation for smooth curves and colors match the current pressure level.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I resize the Dashboard window?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. The Dashboard window can be resized from 360&times;500 (minimum) up to 800&times;1200 (maximum). The content reflows to fit.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Memory Monitoring -->
+            <div class="faq-section" id="memory-monitoring">
+                <h2>Memory Monitoring</h2>
+
+                <details class="faq-item">
+                    <summary>What memory metrics does System Guardian track?</summary>
+                    <div class="faq-answer">
+                        <table>
+                            <thead><tr><th>Metric</th><th>Description</th><th>Source</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Free</strong></td><td>Memory immediately available</td><td><code>host_statistics64</code></td></tr>
+                                <tr><td><strong>Used</strong></td><td>Memory actively in use</td><td>Total minus Free</td></tr>
+                                <tr><td><strong>Wired</strong></td><td>Kernel-locked memory</td><td><code>host_statistics64</code></td></tr>
+                                <tr><td><strong>Compressed</strong></td><td>RAM compressed to save space</td><td><code>host_statistics64</code></td></tr>
+                                <tr><td><strong>Swap</strong></td><td>Memory written to disk</td><td><code>sysctl vm.swapusage</code></td></tr>
+                                <tr><td><strong>Virtual</strong></td><td>Total virtual address space</td><td><code>host_statistics64</code></td></tr>
+                                <tr><td><strong>Total</strong></td><td>Physical RAM installed</td><td><code>ProcessInfo.physicalMemory</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is memory pressure calculated?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian uses a <strong>hybrid absolute + ratio</strong> approach to prevent false positives on high-RAM machines. Critical, warning, and nominal thresholds adapt to your total RAM amount, preventing false "warning" alerts on machines with 128+ GB where having 20 GB free is perfectly healthy.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Free" really mean on macOS?</summary>
+                    <div class="faq-answer">
+                        <p>On macOS, "free" memory includes both truly free pages and "speculative" pages (loaded speculatively, instantly reclaimable). System Guardian counts both as free because they are functionally available.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is compressed memory?</summary>
+                    <div class="faq-answer">
+                        <p>macOS compresses inactive memory pages rather than writing them to swap. This is faster than disk I/O but uses CPU. High compression ratios (above 25% of total RAM) can indicate memory pressure even when "free" memory looks adequate.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Memory Cleaning -->
+            <div class="faq-section" id="memory-cleaning">
+                <h2>Memory Cleaning</h2>
+
+                <details class="faq-item">
+                    <summary>What does "Clean Memory" (Quick Clean) do?</summary>
+                    <div class="faq-answer">
+                        <p>Quick Clean calls <code>malloc_zone_pressure_relief(nil, 0)</code>, which asks all malloc zones in every running process to release pages they are holding but not actively using. This is a lightweight operation that completes in about 1 second.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Deep Clean Memory" do?</summary>
+                    <div class="faq-answer">
+                        <p>Deep Clean forces the kernel to evict cached/inactive pages by creating memory pressure:</p>
+                        <ol>
+                            <li><strong>Allocates</strong> memory chunks (64-512 MB each) up to 80% of current free memory or 50% of total RAM</li>
+                            <li><strong>Writes</strong> zeros to every allocated page (forces physical page assignment)</li>
+                            <li><strong>Releases</strong> all allocated memory</li>
+                            <li><strong>Calls</strong> <code>malloc_zone_pressure_relief</code> to clean up</li>
+                        </ol>
+                        <p>This takes 5-10 seconds and can reclaim several GB of inactive/cached pages.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Is Deep Clean safe?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. Deep Clean only forces the kernel to evict cached and inactive pages. It cannot corrupt active memory or crash running applications. Safety caps include: maximum 256 chunks, never more than 80% of free memory, never more than 50% of total RAM, and adaptive chunk sizes.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Why does the app show "already clean"?</summary>
+                    <div class="faq-answer">
+                        <p>If a clean reports "already clean," it means macOS had very little reclaimable memory. This typically happens right after a previous clean or when the system is genuinely under low memory usage.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I trigger cleaning from the menu bar?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. The menu bar dropdown has two buttons: <strong>Clean Memory</strong> (Cmd+P) for Quick Clean and <strong>Deep Clean Memory</strong> (Cmd+Shift+P) for Deep Clean. You can also use the buttons in the Dashboard.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- CPU Monitoring -->
+            <div class="faq-section" id="cpu-monitoring">
+                <h2>CPU Monitoring</h2>
+
+                <details class="faq-item">
+                    <summary>How is CPU usage calculated?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian reads per-core tick counts from <code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code> twice (with a delay), then calculates the delta between samples. This gives accurate instantaneous CPU usage rather than cumulative averages. Reported values include User, System, and Total percentages.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "100% CPU" mean on macOS?</summary>
+                    <div class="faq-answer">
+                        <p>On macOS, CPU percentage is measured per-core. 100% means one core is fully utilized. A machine with 10 cores can reach 1000% total. System Guardian's total CPU figure is a weighted average across all cores (0-100%).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is the CPU highlight threshold?</summary>
+                    <div class="faq-answer">
+                        <p>In Settings &rarr; Advanced, you can set a per-process CPU highlight limit. Processes exceeding this limit appear with a red dot in the menu bar and dashboard. The value is shown as "N&times;core" (e.g., "2&times;core" = 200% = 2 full cores).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- GPU Monitoring -->
+            <div class="faq-section" id="gpu-monitoring">
+                <h2>GPU Monitoring</h2>
+
+                <details class="faq-item">
+                    <summary>What GPU metrics does System Guardian show?</summary>
+                    <div class="faq-answer">
+                        <table>
+                            <thead><tr><th>Metric</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Device Utilization</strong></td><td>Overall GPU usage percentage</td></tr>
+                                <tr><td><strong>Renderer</strong></td><td>GPU time on fragment/pixel shading</td></tr>
+                                <tr><td><strong>Tiler</strong></td><td>GPU time on vertex processing and tiling</td></tr>
+                                <tr><td><strong>In-Use Memory</strong></td><td>VRAM currently consumed</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is GPU data collected?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian reads GPU telemetry from IOKit's <code>IOAccelerator</code> service, querying the <code>PerformanceStatistics</code> dictionary. This works on both Apple Silicon (integrated GPU) and Intel Macs with discrete GPUs.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Why does GPU show 0%?</summary>
+                    <div class="faq-answer">
+                        <p>If your Mac's GPU is idle (no rendering, no compute), utilization will naturally be 0%. This is normal. GPU utilization spikes during video playback, 3D rendering, Metal compute workloads, or window compositor activity.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Process Management -->
+            <div class="faq-section" id="process-management">
+                <h2>Process Management</h2>
+
+                <details class="faq-item">
+                    <summary>How does System Guardian find running processes?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian runs <code>/bin/ps aux</code> (without using a shell) and parses the output to extract PID, CPU%, memory (RSS), and the process command name. It scans the top 15 processes sorted by your chosen metric.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is "Not Responding" detected?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian runs <code>/usr/bin/lsappinfo</code> and looks for apps reported as "Not Responding." This is the same mechanism the Finder and Dock use. Only GUI applications report this status.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Pause" do?</summary>
+                    <div class="faq-answer">
+                        <p>Pausing sends <code>SIGSTOP</code> to the process, suspending its execution. The process remains in memory but stops consuming CPU. It appears with a yellow dot. Useful for temporarily stopping a runaway process without losing its state.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Resume" do?</summary>
+                    <div class="faq-answer">
+                        <p>Resuming sends <code>SIGCONT</code> to a paused process, which resumes execution from exactly where it stopped. All memory and state are preserved.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Force Quit" do?</summary>
+                    <div class="faq-answer">
+                        <p>Force Quit sends <code>SIGKILL</code> to the process, which immediately terminates it. This cannot be caught or ignored &mdash; any unsaved data will be lost.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I manage system processes?</summary>
+                    <div class="faq-answer">
+                        <p>You can only manage processes that run under your user account. System-owned processes (like <code>kernel_task</code>, <code>WindowServer</code>, or <code>launchd</code>) require root privileges and are protected.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Automated Protections -->
+            <div class="faq-section" id="automated-protections">
+                <h2>Automated Protections</h2>
+
+                <details class="faq-item">
+                    <summary>What is Low RAM Protection?</summary>
+                    <div class="faq-answer">
+                        <p>When enabled (Settings &rarr; General), System Guardian automatically triggers a memory clean when your free RAM drops below a configurable threshold. You choose the GB threshold and cleaning method (Quick Clean or Deep Clean).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is Kill Runaway Process?</summary>
+                    <div class="faq-answer">
+                        <p>When enabled (Settings &rarr; Advanced), System Guardian automatically force-quits any single process that exceeds your per-process memory limit. Protected processes (Finder, Dock, WindowServer, loginwindow, etc.) are never auto-killed.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is CPU Spike Alert?</summary>
+                    <div class="faq-answer">
+                        <p>When enabled (Settings &rarr; Advanced), System Guardian monitors overall CPU usage and sends a notification when CPU stays above your threshold for a configurable duration (e.g., above 90% for 30 seconds).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are there cooldowns to prevent alert spam?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. Cooldown periods: Low RAM auto-clean (60s), auto-kill (30s per process), CPU spike alert (120s), and scheduled cleaning (5 minutes minimum).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Scheduled Cleaning -->
+            <div class="faq-section" id="scheduled-cleaning">
+                <h2>Scheduled Cleaning</h2>
+
+                <details class="faq-item">
+                    <summary>How does scheduled cleaning work?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian can automatically clean memory on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
+                        <ul>
+                            <li><strong>Interval Mode</strong> &mdash; Cleans at a fixed interval (15 minutes to 8 hours)</li>
+                            <li><strong>Time-of-Day Mode</strong> &mdash; Cleans once per day at a specific time you set</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I choose the cleaning method for scheduled cleans?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. You can pick either "Clean" (quick) or "Deep Clean" (aggressive) for scheduled cleaning, independent of the method used for Low RAM Protection.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will scheduled cleaning run if a clean is already in progress?</summary>
+                    <div class="faq-answer">
+                        <p>No. If a manual or automatic clean is already running, the scheduled clean is skipped. There is also a 5-minute cooldown between scheduled cleans.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Notifications -->
+            <div class="faq-section" id="notifications">
+                <h2>Notifications</h2>
+
+                <details class="faq-item">
+                    <summary>What notifications does System Guardian send?</summary>
+                    <div class="faq-answer">
+                        <table>
+                            <thead><tr><th>Notification</th><th>Trigger</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Low RAM Alert</strong></td><td>Free memory dropped below threshold and auto-clean triggered</td></tr>
+                                <tr><td><strong>Process Auto-Killed</strong></td><td>A runaway process exceeded your memory limit</td></tr>
+                                <tr><td><strong>CPU Spike Alert</strong></td><td>CPU stayed above threshold for the configured duration</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do I configure notifications?</summary>
+                    <div class="faq-answer">
+                        <p><strong>Enable/Disable:</strong> Settings &rarr; General &rarr; "Enable Notifications." Click "Configure in System Settings..." for macOS-level control over banners, sounds, and Do Not Disturb behavior.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I disable specific notification types?</summary>
+                    <div class="faq-answer">
+                        <p>Each protection feature has its own toggle. Disabling "CPU Spike Alert" stops CPU notifications. Disabling "Kill Runaway Process" stops auto-kill notifications. Disabling "Low RAM Protection" stops low-RAM notifications.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Settings — General -->
+            <div class="faq-section" id="settings-general">
+                <h2>Settings &mdash; General Tab</h2>
+
+                <details class="faq-item">
+                    <summary>Launch at Login</summary>
+                    <div class="faq-answer">
+                        <p>When enabled, System Guardian automatically starts when you log into your Mac. This uses the <code>SMAppService</code> API (the modern macOS method). Verify in System Settings &rarr; General &rarr; Login Items &amp; Extensions.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Poll Interval</summary>
+                    <div class="faq-answer">
+                        <p>How often System Guardian refreshes all metrics. Range: <strong>2 to 60 seconds</strong>. Default: <strong>5 seconds</strong>. Lower values give more responsive monitoring but use slightly more CPU. Recommended: 3-10 seconds.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Notifications toggle</summary>
+                    <div class="faq-answer">
+                        <p>A master toggle to enable or disable all macOS notifications from System Guardian. The "Configure in System Settings..." button opens macOS Notification preferences for fine-grained control.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Settings — Advanced -->
+            <div class="faq-section" id="settings-advanced">
+                <h2>Settings &mdash; Advanced Tab</h2>
+
+                <details class="faq-item">
+                    <summary>Kill Runaway Process</summary>
+                    <div class="faq-answer">
+                        <p>Per-process memory limit with an enable/disable toggle. Any process exceeding this limit is force-quit (with protected system processes excluded).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Per-Process CPU Highlight</summary>
+                    <div class="faq-answer">
+                        <p>Sets the threshold for red highlighting in the menu bar and dashboard. Displayed as "N&times;core" where 1&times;core = 100%. This is a <strong>visual indicator only</strong> &mdash; it does not trigger any automatic action.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>CPU Spike Alert</summary>
+                    <div class="faq-answer">
+                        <p>Overall CPU threshold and duration for alert notifications. Spike duration range: <strong>10 to 120 seconds</strong>, step: 5 seconds.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Scheduled RAM Cleaning</summary>
+                    <div class="faq-answer">
+                        <p>Enable and configure automatic memory cleaning on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Events Log -->
+            <div class="faq-section" id="events-log">
+                <h2>Events Log</h2>
+
+                <details class="faq-item">
+                    <summary>What is the Events Log?</summary>
+                    <div class="faq-answer">
+                        <p>A timeline of actions and alerts. Each event has an icon (blue for info, orange for warning, red for auto-kill), a message, and a relative timestamp. The log keeps the 50 most recent events in memory (ring buffer). Events are not persisted to disk.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What events are logged?</summary>
+                    <div class="faq-answer">
+                        <ul>
+                            <li>Manual quick clean and deep clean</li>
+                            <li>Scheduled clean triggered + result</li>
+                            <li>Low RAM auto-clean triggered</li>
+                            <li>Process paused, resumed, or force-quit</li>
+                            <li>Runaway process auto-killed</li>
+                            <li>CPU spike alert triggered</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Hardware-Aware Defaults -->
+            <div class="faq-section" id="hardware-defaults">
+                <h2>Hardware-Aware Defaults</h2>
+
+                <details class="faq-item">
+                    <summary>What are hardware-aware defaults?</summary>
+                    <div class="faq-answer">
+                        <p>On first launch, System Guardian detects your Mac's total RAM and core count and sets sensible default thresholds. An 8 GB MacBook Air gets different defaults than a 192 GB Mac Pro.</p>
+                        <table>
+                            <thead><tr><th>Setting</th><th>Default Formula</th><th>Example (32 GB / 10 cores)</th></tr></thead>
+                            <tbody>
+                                <tr><td>Low RAM threshold</td><td>15% of total RAM (min 2 GB)</td><td>4.8 GB</td></tr>
+                                <tr><td>Per-process memory limit</td><td>25% of total RAM (min 2 GB)</td><td>8 GB</td></tr>
+                                <tr><td>CPU highlight</td><td>12.5% of total cores (min 200%)</td><td>200%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I change the defaults?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. All thresholds are fully adjustable through sliders in Settings. The hardware-aware values are only applied on first launch.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are my settings validated?</summary>
+                    <div class="faq-answer">
+                        <p>Yes. On every launch, System Guardian clamps all persisted settings to valid ranges to protect against corrupt UserDefaults. Poll interval: 2-60s, RAM thresholds: 1 GB to 75% of total, CPU thresholds: 100% to (cores &times; 100)%.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Privacy & Security -->
+            <div class="faq-section" id="privacy-security">
+                <h2>Privacy &amp; Security</h2>
+
+                <details class="faq-item">
+                    <summary>Does System Guardian connect to the internet?</summary>
+                    <div class="faq-answer">
+                        <p>No. System Guardian makes <strong>zero network requests</strong>. There is no analytics, no telemetry, no update checks, no cloud sync. Your system data never leaves your Mac.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What data does it access?</summary>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>Mach kernel statistics</strong> &mdash; Memory and CPU metrics</li>
+                            <li><strong>IOKit GPU telemetry</strong> &mdash; GPU utilization and VRAM (read-only)</li>
+                            <li><strong>Process list</strong> &mdash; Via <code>/bin/ps</code> (only your processes)</li>
+                            <li><strong>App responsiveness</strong> &mdash; Via <code>/usr/bin/lsappinfo</code></li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Does it store any data on disk?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian stores only your <strong>settings preferences</strong> in the standard macOS UserDefaults system. No logs, no databases, no other files are created.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Technical Details -->
+            <div class="faq-section" id="technical-details">
+                <h2>Technical Details</h2>
+
+                <details class="faq-item">
+                    <summary>What APIs does System Guardian use?</summary>
+                    <div class="faq-answer">
+                        <table>
+                            <thead><tr><th>Subsystem</th><th>API</th><th>Function</th></tr></thead>
+                            <tbody>
+                                <tr><td>Memory</td><td>Mach kernel</td><td><code>host_statistics64(HOST_VM_INFO64)</code></td></tr>
+                                <tr><td>CPU</td><td>Mach kernel</td><td><code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code></td></tr>
+                                <tr><td>GPU</td><td>IOKit</td><td><code>IOAccelerator</code> &rarr; <code>PerformanceStatistics</code></td></tr>
+                                <tr><td>Swap</td><td>sysctl</td><td><code>vm.swapusage</code></td></tr>
+                                <tr><td>Processes</td><td>POSIX</td><td><code>/bin/ps</code> via <code>Process()</code></td></tr>
+                                <tr><td>Quick Clean</td><td>libc</td><td><code>malloc_zone_pressure_relief</code></td></tr>
+                                <tr><td>Deep Clean</td><td>libc</td><td><code>malloc</code> + <code>memset</code> + <code>free</code></td></tr>
+                                <tr><td>Login Item</td><td>ServiceMgmt</td><td><code>SMAppService.mainApp</code></td></tr>
+                                <tr><td>Notifications</td><td>UserNotifications</td><td><code>UNUserNotificationCenter</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How much CPU does System Guardian use?</summary>
+                    <div class="faq-answer">
+                        <p>At the default 5-second poll interval, approximately 0.1-0.3% CPU on average. Kernel API calls take less than 1ms each. Process scanning via <code>ps</code> is the slowest operation and runs on a background thread.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is the app structured?</summary>
+                    <div class="faq-answer">
+                        <p>~2,400 lines of Swift across 7 source files. No external dependencies.</p>
+                        <ul>
+                            <li><strong>SystemGuardianApp</strong> &mdash; App entry point, NSStatusItem, menu bar</li>
+                            <li><strong>AppState</strong> &mdash; Central @Published state hub, polling, cleaning</li>
+                            <li><strong>SystemMonitor</strong> &mdash; Kernel APIs: host_statistics64, host_processor_info, IOKit</li>
+                            <li><strong>ProcessManager</strong> &mdash; /bin/ps parsing, SIGSTOP/SIGCONT/SIGKILL</li>
+                            <li><strong>Watchdog</strong> &mdash; Automated protection, notifications</li>
+                            <li><strong>DashboardView</strong> &mdash; SwiftUI dashboard with Swift Charts</li>
+                            <li><strong>SettingsView</strong> &mdash; General + Advanced settings tabs</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="faq-section" id="troubleshooting">
+                <h2>Troubleshooting</h2>
+
+                <details class="faq-item">
+                    <summary>The menu bar icon is missing</summary>
+                    <div class="faq-answer">
+                        <p>Make sure System Guardian is running (check Activity Monitor). If you have many menu bar items, macOS may hide some &mdash; try closing other menu bar apps or using a menu bar management tool.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Memory cleaning doesn't reclaim much</summary>
+                    <div class="faq-answer">
+                        <p>This is normal if macOS is already managing memory efficiently. On Apple Silicon Macs with unified memory, the kernel aggressively compresses and manages pages. Quick Clean typically reclaims 0.1-1 GB, while Deep Clean can reclaim 1-5 GB depending on cached/inactive memory.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>A process shows "Not Responding" but works fine</summary>
+                    <div class="faq-answer">
+                        <p>Some apps occasionally appear as "Not Responding" during heavy computation (e.g., video rendering, compiling). This is detected by the same mechanism macOS uses. If the app is actually working, you can safely ignore the status &mdash; it will clear once the task finishes.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I monitor processes owned by other users?</summary>
+                    <div class="faq-answer">
+                        <p>No. System Guardian can only see and manage processes running under your user account. System-owned processes appear in the list but cannot be paused or killed without root privileges.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Settings reset after update</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian stores settings in macOS UserDefaults. These persist across updates as long as the bundle identifier remains the same. If settings appear reset, the hardware-aware defaults may have been reapplied due to a migration flag.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>The app won't launch &mdash; "damaged" or "unidentified developer"</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian is signed and notarized by Apple. If you see this warning:</p>
+                        <ol>
+                            <li>Right-click the app &rarr; Open (bypasses first-launch Gatekeeper check)</li>
+                            <li>Or go to System Settings &rarr; Privacy &amp; Security &rarr; scroll down and click "Open Anyway"</li>
+                        </ol>
+                        <p>This only happens once per downloaded version.</p>
+                    </div>
+                </details>
+            </div>
+
+        </div><!-- .faq-main -->
+    </div><!-- .faq-layout -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+        <p class="footer-credit">&copy; 2026 Mantvydas Vaitkaitis. All rights reserved.</p>
+        <p class="footer-built">Built with Swift and SwiftUI for macOS.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

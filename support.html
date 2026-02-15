@@ -4,206 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Guardian — Support</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background-color: #16213e;
-            border-bottom: 1px solid #0f3460;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #e94560;
-            margin-bottom: 0.25rem;
-        }
-
-        header p {
-            font-size: 0.95rem;
-            color: #8892a4;
-        }
-
-        main {
-            max-width: 720px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
-            flex: 1;
-        }
-
-        h2 {
-            font-size: 1.3rem;
-            color: #e94560;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-            border-bottom: 1px solid #0f3460;
-            padding-bottom: 0.4rem;
-        }
-
-        h3 {
-            font-size: 1.05rem;
-            color: #c0c0cc;
-            margin-top: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p, li {
-            font-size: 1rem;
-            color: #c8c8d0;
-            margin-bottom: 0.75rem;
-        }
-
-        ol {
-            padding-left: 1.5rem;
-        }
-
-        ol li {
-            margin-bottom: 0.5rem;
-        }
-
-        a {
-            color: #e94560;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .card {
-            background-color: #16213e;
-            border: 1px solid #0f3460;
-            border-radius: 10px;
-            padding: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tip {
-            background-color: #1a2740;
-            border-left: 3px solid #53d769;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.75rem;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.95rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            font-size: 0.85rem;
-            color: #555;
-            border-top: 1px solid #0f3460;
-        }
-
-        nav.page-links {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        nav.page-links a {
-            margin: 0 0.75rem;
-            font-size: 0.9rem;
-            color: #8892a4;
-        }
-
-        nav.page-links a:hover {
-            color: #e94560;
-        }
-    </style>
+    <meta name="description" content="Get help with System Guardian. Troubleshooting tips, FAQ, and contact information.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>System Guardian</h1>
-        <p>Support</p>
-    </header>
 
-    <main>
-        <nav class="page-links">
-            <a href="index.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <a href="support.html">Support</a>
-        </nav>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/favicon.png" alt="System Guardian icon" width="32" height="32">
+                System Guardian
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><span class="separator"></span></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-        <div class="card">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Support</h1>
+        <p>We're here to help you get the most out of System Guardian.</p>
+    </div>
+
+    <!-- Content -->
+    <div class="legal-content">
+
+        <!-- Quick Links -->
+        <div class="legal-card">
+            <h2>Quick Help</h2>
+            <p>Find answers fast with these resources:</p>
+            <ul>
+                <li><a href="faq.html">Frequently Asked Questions</a> — Detailed answers covering every feature</li>
+                <li><a href="https://github.com/mant0u0/GuardianMonitor/issues" target="_blank" rel="noopener">GitHub Issues</a> — Report bugs or request features</li>
+                <li><a href="faq.html#troubleshooting">Troubleshooting Guide</a> — Step-by-step fixes for common issues</li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="legal-card">
             <h2>Contact Us</h2>
             <p>
                 For questions, feedback, or bug reports, please email us at
                 <a href="mailto:info@khaeldur.com">info@khaeldur.com</a>.
             </p>
-            <p>
-                We typically respond within 48 hours.
-            </p>
+            <p>We typically respond within 48 hours.</p>
+            <div class="tip">
+                <strong>Tip:</strong> When reporting an issue, please include your macOS version, System Guardian version, and a description of what happened. This helps us resolve issues faster.
+            </div>
         </div>
 
-        <div class="card">
-            <h2>Frequently Asked Questions</h2>
-            <p>
-                For detailed answers to common questions, please see the FAQ
-                section in the app documentation included with System Guardian.
-            </p>
-        </div>
-
-        <div class="card">
+        <!-- Troubleshooting -->
+        <div class="legal-card">
             <h2>Troubleshooting</h2>
             <p>If you experience issues with System Guardian, try the following steps:</p>
 
             <h3>1. Restart the App</h3>
             <div class="tip">
-                Quit System Guardian completely (right-click the Dock icon and
-                choose Quit, or press <strong>Cmd + Q</strong>), then relaunch
-                it. This resolves most transient issues.
+                Quit System Guardian completely (right-click the menu bar icon and choose Quit, or press <strong>Cmd + Q</strong>), then relaunch it. This resolves most transient issues.
             </div>
 
-            <h3>2. Check macOS Permissions</h3>
+            <h3>2. Check Notifications</h3>
             <div class="tip">
-                System Guardian requires certain permissions to monitor your
-                system. Go to <strong>System Settings &rarr; Privacy &amp;
-                Security</strong> and verify that System Guardian has the
-                necessary access granted. If permissions were recently changed,
-                restart the app afterward.
+                If you're not receiving alerts, go to <strong>System Settings &rarr; Notifications</strong> and verify that System Guardian has permission to send notifications. Also check that notifications are enabled in the app's Settings &rarr; General tab.
             </div>
 
-            <h3>3. Update macOS</h3>
+            <h3>3. Check Launch at Login</h3>
             <div class="tip">
-                Make sure you are running the latest version of macOS.
-                Go to <strong>System Settings &rarr; General &rarr; Software
-                Update</strong> to check for updates.
+                To verify Launch at Login is working, go to <strong>System Settings &rarr; General &rarr; Login Items &amp; Extensions</strong>. System Guardian should appear in the list. If it doesn't, toggle the setting off and on in the app's Settings.
             </div>
 
-            <h3>4. Reinstall the App</h3>
+            <h3>4. Update macOS</h3>
             <div class="tip">
-                If issues persist, delete System Guardian from your Applications
-                folder and reinstall it from the Mac App Store.
+                Make sure you are running macOS 13 (Ventura) or later. Go to <strong>System Settings &rarr; General &rarr; Software Update</strong> to check for updates.
             </div>
 
-            <h3>5. Still Need Help?</h3>
+            <h3>5. Reinstall the App</h3>
+            <div class="tip">
+                If issues persist, delete System Guardian from your Applications folder and reinstall it from the Mac App Store. Your settings (stored in UserDefaults) will be preserved.
+            </div>
+
+            <h3>6. Memory Cleaning Doesn't Free Much</h3>
+            <div class="tip">
+                This is normal on Apple Silicon Macs with efficient memory management. Quick Clean typically reclaims 0.1&ndash;1 GB. Deep Clean can reclaim 1&ndash;5 GB depending on cached/inactive memory. If macOS reports "already clean," there simply isn't much to reclaim.
+            </div>
+
+            <h3>Still Need Help?</h3>
             <p>
                 If none of the above resolves your issue, please contact us at
                 <a href="mailto:info@khaeldur.com">info@khaeldur.com</a>
-                with a description of the problem, your macOS version, and any
-                error messages you see.
+                with a description of the problem, your macOS version, and any error messages you see.
             </p>
         </div>
-    </main>
 
-    <footer>
-        &copy; 2026 Mantvydas Vaitkaitis. All rights reserved.
+        <!-- System Requirements -->
+        <div class="legal-card">
+            <h2>System Requirements</h2>
+            <ul>
+                <li><strong>macOS 13.0</strong> (Ventura) or later</li>
+                <li>Apple Silicon or Intel Mac (Universal Binary)</li>
+                <li>~6 MB disk space</li>
+                <li>~15&ndash;25 MB RAM while running</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+        <p class="footer-credit">&copy; 2026 Mantvydas Vaitkaitis. All rights reserved.</p>
+        <p class="footer-built">Built with Swift and SwiftUI for macOS.</p>
     </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

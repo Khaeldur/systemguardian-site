@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Guardian — Privacy Policy</title>
+    <meta name="description" content="System Guardian privacy policy. Zero data collection, zero network requests, zero third-party dependencies.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/favicon.png" alt="System Guardian icon" width="32" height="32">
+                System Guardian
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><span class="separator"></span></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is our foremost priority.</p>
+    </div>
+
+    <!-- Content -->
+    <div class="legal-content">
+        <div class="legal-card">
+            <h2>Overview</h2>
+            <p>
+                System Guardian is a macOS system monitoring and memory management utility developed by Mantvydas Vaitkaitis. The app collects <strong>no personal data whatsoever</strong>.
+            </p>
+            <p class="effective-date">Effective date: February 15, 2026</p>
+        </div>
+
+        <div class="legal-card">
+            <h2>No Data Collection</h2>
+            <p>System Guardian does not collect, store, or transmit any personal information. Specifically:</p>
+            <ul>
+                <li>No analytics or telemetry</li>
+                <li>No crash reporting to external services</li>
+                <li>No user accounts or sign-in</li>
+                <li>No advertising or ad tracking</li>
+                <li>No cookies or web technologies</li>
+                <li>No network connections of any kind</li>
+            </ul>
+        </div>
+
+        <div class="legal-card">
+            <h2>Data Accessed On-Device</h2>
+            <p>System Guardian reads the following system information <strong>locally on your Mac</strong> to provide its monitoring features:</p>
+            <ul class="disc">
+                <li><strong>Memory statistics</strong> — Total RAM, free memory, used memory, swap usage, compressed memory (via Mach kernel APIs)</li>
+                <li><strong>CPU usage</strong> — User, system, and idle CPU percentages (via Mach host statistics)</li>
+                <li><strong>GPU telemetry</strong> — Device utilization, renderer utilization, tiler utilization, VRAM usage (via IOKit)</li>
+                <li><strong>Process list</strong> — Running application names, PIDs, per-process CPU and memory usage (via NSWorkspace and system APIs)</li>
+            </ul>
+            <p>All of this data stays entirely on your Mac. It is displayed in the app's menu bar and dashboard, and is never transmitted, stored externally, or shared with anyone.</p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Data Storage</h2>
+            <p>
+                System Guardian stores your preferences (settings, thresholds, notification preferences) using macOS UserDefaults, which is local to your Mac. No data is stored in iCloud, on remote servers, or in any external database.
+            </p>
+            <p>
+                The events log (memory cleans, process actions, alerts) is kept in memory only and is cleared when the app quits.
+            </p>
+        </div>
+
+        <div class="legal-card">
+            <h2>First-Party Frameworks Only</h2>
+            <p>
+                System Guardian is built exclusively with Apple first-party frameworks (SwiftUI, AppKit, Foundation, IOKit). There are <strong>no third-party libraries, SDKs, or services</strong> embedded in the application.
+            </p>
+        </div>
+
+        <div class="legal-card">
+            <h2>No Third-Party Services</h2>
+            <p>
+                The app does not integrate with any third-party services, advertising networks, or data brokers. Your system data is never shared with anyone.
+            </p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Children's Privacy</h2>
+            <p>
+                System Guardian does not collect any personal information from anyone, including children under the age of 13.
+            </p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Changes to This Policy</h2>
+            <p>
+                If we update this privacy policy, the revised version will be posted here with an updated date. Since System Guardian has no network access, it cannot notify you of policy changes in-app.
+            </p>
+        </div>
+
+        <div class="legal-card">
+            <h2>Contact</h2>
+            <p>
+                If you have any questions about this privacy policy, please contact us at
+                <a href="mailto:info@khaeldur.com">info@khaeldur.com</a>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+        <p class="footer-credit">&copy; 2026 Mantvydas Vaitkaitis. All rights reserved.</p>
+        <p class="footer-built">Built with Swift and SwiftUI for macOS.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
