@@ -76,7 +76,7 @@
                 <details class="faq-item">
                     <summary>What is System Guardian?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian is a native macOS menu bar app that monitors your Mac's CPU, GPU, and memory in real time. It uses direct kernel APIs to provide accurate telemetry and can automatically clean memory, kill runaway processes, and alert you when things go wrong.</p>
+                        <p>System Guardian is a native macOS menu bar app that monitors CPU, GPU, memory, and swap in real time. It provides local alerts and user-controlled actions for resource management.</p>
                     </div>
                 </details>
 
@@ -96,7 +96,7 @@
                     <summary>How do I install it?</summary>
                     <div class="faq-answer">
                         <ol>
-                            <li>Download from the Mac App Store or from the GitHub releases page.</li>
+                            <li>Download from the App Store or from the GitHub releases page.</li>
                             <li>If using the DMG, open it and drag <strong>System Guardian</strong> to your Applications folder.</li>
                             <li>Launch the app &mdash; a shield icon appears in your menu bar.</li>
                             <li>Optionally enable "Launch at Login" in Settings.</li>
@@ -107,7 +107,7 @@
                 <details class="faq-item">
                     <summary>Does it require administrator privileges?</summary>
                     <div class="faq-answer">
-                        <p>No. System Guardian runs entirely in user space. It accesses kernel telemetry through standard Mach APIs that are available to any user process, and sends POSIX signals (pause, resume, kill) to processes you own. It cannot affect processes owned by root or other users.</p>
+                        <p>No. System Guardian runs entirely in user space and does not require administrator access for normal operation.</p>
                     </div>
                 </details>
             </div>
@@ -145,7 +145,7 @@
                             <li><strong>Health header</strong> &mdash; A one-line status sentence</li>
                             <li><strong>Pressure detail</strong> &mdash; Free GB, Swap GB, and Compressed GB breakdown</li>
                             <li><strong>Process count and free GB</strong></li>
-                            <li><strong>Clean Memory / Deep Clean Memory</strong> buttons</li>
+                            <li><strong>Memory action</strong> buttons</li>
                             <li><strong>Top 5 Processes</strong> &mdash; Sorted by CPU or Memory, each with a submenu</li>
                             <li><strong>Open Dashboard</strong> &mdash; Opens the full dashboard window</li>
                             <li><strong>Settings</strong> and <strong>Quit</strong></li>
@@ -160,8 +160,7 @@
                             <thead><tr><th>Dot Color</th><th>Meaning</th></tr></thead>
                             <tbody>
                                 <tr><td>Green</td><td>Process is running normally</td></tr>
-                                <tr><td>Yellow</td><td>Process is paused (you sent SIGSTOP)</td></tr>
-                                <tr><td>Red</td><td>Process is not responding or exceeds CPU/memory limits</td></tr>
+                                <tr><td>Red</td><td>Process exceeds configured CPU/memory limits</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -250,44 +249,43 @@
                 <h2>Memory Cleaning</h2>
 
                 <details class="faq-item">
-                    <summary>What does "Clean Memory" (Quick Clean) do?</summary>
+                    <summary>What does Quick Clean do?</summary>
                     <div class="faq-answer">
                         <p>Quick Clean calls <code>malloc_zone_pressure_relief(nil, 0)</code>, which asks all malloc zones in every running process to release pages they are holding but not actively using. This is a lightweight operation that completes in about 1 second.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What does "Deep Clean Memory" do?</summary>
+                    <summary>What does Deep Clean do?</summary>
                     <div class="faq-answer">
-                        <p>Deep Clean forces the kernel to evict cached/inactive pages by creating memory pressure:</p>
+                        <p>Deep Clean performs a stronger memory action than Quick Clean. It may take longer and can temporarily reduce responsiveness while it runs.</p>
                         <ol>
-                            <li><strong>Allocates</strong> memory chunks (64-512 MB each) up to 80% of current free memory or 50% of total RAM</li>
-                            <li><strong>Writes</strong> zeros to every allocated page (forces physical page assignment)</li>
-                            <li><strong>Releases</strong> all allocated memory</li>
-                            <li><strong>Calls</strong> <code>malloc_zone_pressure_relief</code> to clean up</li>
+                            <li><strong>Runs multiple internal memory-pressure cycles</strong> with safety limits</li>
+                            <li><strong>Releases temporary allocations</strong> when each cycle completes</li>
+                            <li><strong>Refreshes memory metrics</strong> and reports completion in-app</li>
                         </ol>
-                        <p>This takes 5-10 seconds and can reclaim several GB of inactive/cached pages.</p>
+                        <p>Results vary by workload and current memory state.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Is Deep Clean safe?</summary>
                     <div class="faq-answer">
-                        <p>Yes. Deep Clean only forces the kernel to evict cached and inactive pages. It cannot corrupt active memory or crash running applications. Safety caps include: maximum 256 chunks, never more than 80% of free memory, never more than 50% of total RAM, and adaptive chunk sizes.</p>
+                        <p>Deep Clean is designed with safety limits, but it can temporarily increase resource usage while running. Use it only when needed and avoid running it during latency-sensitive work.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Why does the app show "already clean"?</summary>
                     <div class="faq-answer">
-                        <p>If a clean reports "already clean," it means macOS had very little reclaimable memory. This typically happens right after a previous clean or when the system is genuinely under low memory usage.</p>
+                        <p>If a clean reports "already clean," the system may already be in a healthy state with little reclaimable cache at that moment.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Can I trigger cleaning from the menu bar?</summary>
                     <div class="faq-answer">
-                        <p>Yes. The menu bar dropdown has two buttons: <strong>Clean Memory</strong> (Cmd+P) for Quick Clean and <strong>Deep Clean Memory</strong> (Cmd+Shift+P) for Deep Clean. You can also use the buttons in the Dashboard.</p>
+                        <p>Yes. You can trigger memory actions from the menu bar or from the Dashboard.</p>
                     </div>
                 </details>
             </div>
@@ -359,42 +357,28 @@
                 <details class="faq-item">
                     <summary>How does System Guardian find running processes?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian runs <code>/bin/ps aux</code> (without using a shell) and parses the output to extract PID, CPU%, memory (RSS), and the process command name. It scans the top 15 processes sorted by your chosen metric.</p>
+                        <p>System Guardian lists running processes with their current CPU and memory usage so you can identify heavy resource consumers.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>How is "Not Responding" detected?</summary>
+                    <summary>Can I force quit a process from the app?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian runs <code>/usr/bin/lsappinfo</code> and looks for apps reported as "Not Responding." This is the same mechanism the Finder and Dock use. Only GUI applications report this status.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary>What does "Pause" do?</summary>
-                    <div class="faq-answer">
-                        <p>Pausing sends <code>SIGSTOP</code> to the process, suspending its execution. The process remains in memory but stops consuming CPU. It appears with a yellow dot. Useful for temporarily stopping a runaway process without losing its state.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary>What does "Resume" do?</summary>
-                    <div class="faq-answer">
-                        <p>Resuming sends <code>SIGCONT</code> to a paused process, which resumes execution from exactly where it stopped. All memory and state are preserved.</p>
+                        <p>Yes. You can force quit supported user processes from the app interface. Unsaved work in that process may be lost.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>What does "Force Quit" do?</summary>
                     <div class="faq-answer">
-                        <p>Force Quit sends <code>SIGKILL</code> to the process, which immediately terminates it. This cannot be caught or ignored &mdash; any unsaved data will be lost.</p>
+                        <p>Force Quit immediately terminates the selected process. Any unsaved data in that process will be lost.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Can I manage system processes?</summary>
                     <div class="faq-answer">
-                        <p>You can only manage processes that run under your user account. System-owned processes (like <code>kernel_task</code>, <code>WindowServer</code>, or <code>launchd</code>) require root privileges and are protected.</p>
+                        <p>You can only manage supported processes for your current user account. Critical system processes are protected.</p>
                     </div>
                 </details>
             </div>
@@ -406,14 +390,14 @@
                 <details class="faq-item">
                     <summary>What is Low RAM Protection?</summary>
                     <div class="faq-answer">
-                        <p>When enabled (Settings &rarr; General), System Guardian automatically triggers a memory clean when your free RAM drops below a configurable threshold. You choose the GB threshold and cleaning method (Quick Clean or Deep Clean).</p>
+                        <p>When enabled, System Guardian can run a memory action automatically when free memory drops below your configured threshold.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What is Kill Runaway Process?</summary>
+                    <summary>What is Process Protection?</summary>
                     <div class="faq-answer">
-                        <p>When enabled (Settings &rarr; Advanced), System Guardian automatically force-quits any single process that exceeds your per-process memory limit. Protected processes (Finder, Dock, WindowServer, loginwindow, etc.) are never auto-killed.</p>
+                        <p>When enabled, System Guardian can apply automated process protection based on the memory limit you configure. Protected system processes are excluded.</p>
                     </div>
                 </details>
 
@@ -427,7 +411,7 @@
                 <details class="faq-item">
                     <summary>Are there cooldowns to prevent alert spam?</summary>
                     <div class="faq-answer">
-                        <p>Yes. Cooldown periods: Low RAM auto-clean (60s), auto-kill (30s per process), CPU spike alert (120s), and scheduled cleaning (5 minutes minimum).</p>
+                        <p>Yes. Cooldown periods are applied to automated actions and alerts to reduce repeated notifications and repeated actions.</p>
                     </div>
                 </details>
             </div>
@@ -439,7 +423,7 @@
                 <details class="faq-item">
                     <summary>How does scheduled cleaning work?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian can automatically clean memory on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
+                        <p>System Guardian can run memory actions on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
                         <ul>
                             <li><strong>Interval Mode</strong> &mdash; Cleans at a fixed interval (15 minutes to 8 hours)</li>
                             <li><strong>Time-of-Day Mode</strong> &mdash; Cleans once per day at a specific time you set</li>
@@ -450,7 +434,7 @@
                 <details class="faq-item">
                     <summary>Can I choose the cleaning method for scheduled cleans?</summary>
                     <div class="faq-answer">
-                        <p>Yes. You can pick either "Clean" (quick) or "Deep Clean" (aggressive) for scheduled cleaning, independent of the method used for Low RAM Protection.</p>
+                        <p>Yes. You can choose the scheduled memory-action method independently from low-memory automation settings.</p>
                     </div>
                 </details>
 
@@ -472,8 +456,8 @@
                         <table>
                             <thead><tr><th>Notification</th><th>Trigger</th></tr></thead>
                             <tbody>
-                                <tr><td><strong>Low RAM Alert</strong></td><td>Free memory dropped below threshold and auto-clean triggered</td></tr>
-                                <tr><td><strong>Process Auto-Killed</strong></td><td>A runaway process exceeded your memory limit</td></tr>
+                                <tr><td><strong>Low RAM Alert</strong></td><td>Free memory dropped below threshold and a memory action was triggered</td></tr>
+                                <tr><td><strong>Process Protection Action</strong></td><td>A configured process memory limit was exceeded</td></tr>
                                 <tr><td><strong>CPU Spike Alert</strong></td><td>CPU stayed above threshold for the configured duration</td></tr>
                             </tbody>
                         </table>
@@ -490,7 +474,7 @@
                 <details class="faq-item">
                     <summary>Can I disable specific notification types?</summary>
                     <div class="faq-answer">
-                        <p>Each protection feature has its own toggle. Disabling "CPU Spike Alert" stops CPU notifications. Disabling "Kill Runaway Process" stops auto-kill notifications. Disabling "Low RAM Protection" stops low-RAM notifications.</p>
+                        <p>Each protection feature has its own toggle. You can disable specific automation and alert types independently.</p>
                     </div>
                 </details>
             </div>
@@ -526,7 +510,7 @@
                 <h2>Settings &mdash; Advanced Tab</h2>
 
                 <details class="faq-item">
-                    <summary>Kill Runaway Process</summary>
+                    <summary>Process Protection</summary>
                     <div class="faq-answer">
                         <p>Per-process memory limit with an enable/disable toggle. Any process exceeding this limit is force-quit (with protected system processes excluded).</p>
                     </div>
@@ -561,7 +545,7 @@
                 <details class="faq-item">
                     <summary>What is the Events Log?</summary>
                     <div class="faq-answer">
-                        <p>A timeline of actions and alerts. Each event has an icon (blue for info, orange for warning, red for auto-kill), a message, and a relative timestamp. The log keeps the 50 most recent events in memory (ring buffer). Events are not persisted to disk.</p>
+                        <p>A timeline of actions and alerts. Each event has an icon, a message, and a relative timestamp. The log keeps the 50 most recent events in memory (ring buffer). Events are not persisted to disk.</p>
                     </div>
                 </details>
 
@@ -569,11 +553,11 @@
                     <summary>What events are logged?</summary>
                     <div class="faq-answer">
                         <ul>
-                            <li>Manual quick clean and deep clean</li>
+                            <li>Manual memory actions</li>
                             <li>Scheduled clean triggered + result</li>
-                            <li>Low RAM auto-clean triggered</li>
-                            <li>Process paused, resumed, or force-quit</li>
-                            <li>Runaway process auto-killed</li>
+                            <li>Low RAM memory action triggered</li>
+                            <li>Manual process force quit actions</li>
+                            <li>Automated process protection actions</li>
                             <li>CPU spike alert triggered</li>
                         </ul>
                     </div>
@@ -629,10 +613,9 @@
                     <summary>What data does it access?</summary>
                     <div class="faq-answer">
                         <ul>
-                            <li><strong>Mach kernel statistics</strong> &mdash; Memory and CPU metrics</li>
+                            <li><strong>System statistics APIs</strong> &mdash; Memory and CPU metrics</li>
                             <li><strong>IOKit GPU telemetry</strong> &mdash; GPU utilization and VRAM (read-only)</li>
-                            <li><strong>Process list</strong> &mdash; Via <code>/bin/ps</code> (only your processes)</li>
-                            <li><strong>App responsiveness</strong> &mdash; Via <code>/usr/bin/lsappinfo</code></li>
+                            <li><strong>Process list</strong> &mdash; Running process resource usage</li>
                         </ul>
                     </div>
                 </details>
@@ -659,9 +642,8 @@
                                 <tr><td>CPU</td><td>Mach kernel</td><td><code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code></td></tr>
                                 <tr><td>GPU</td><td>IOKit</td><td><code>IOAccelerator</code> &rarr; <code>PerformanceStatistics</code></td></tr>
                                 <tr><td>Swap</td><td>sysctl</td><td><code>vm.swapusage</code></td></tr>
-                                <tr><td>Processes</td><td>POSIX</td><td><code>/bin/ps</code> via <code>Process()</code></td></tr>
-                                <tr><td>Quick Clean</td><td>libc</td><td><code>malloc_zone_pressure_relief</code></td></tr>
-                                <tr><td>Deep Clean</td><td>libc</td><td><code>malloc</code> + <code>memset</code> + <code>free</code></td></tr>
+                                <tr><td>Processes</td><td>System APIs</td><td>Usage listing and manual actions</td></tr>
+                                <tr><td>Memory Actions</td><td>System memory APIs</td><td>User-triggered and optional automated actions</td></tr>
                                 <tr><td>Login Item</td><td>ServiceMgmt</td><td><code>SMAppService.mainApp</code></td></tr>
                                 <tr><td>Notifications</td><td>UserNotifications</td><td><code>UNUserNotificationCenter</code></td></tr>
                             </tbody>
@@ -684,7 +666,7 @@
                             <li><strong>SystemGuardianApp</strong> &mdash; App entry point, NSStatusItem, menu bar</li>
                             <li><strong>AppState</strong> &mdash; Central @Published state hub, polling, cleaning</li>
                             <li><strong>SystemMonitor</strong> &mdash; Kernel APIs: host_statistics64, host_processor_info, IOKit</li>
-                            <li><strong>ProcessManager</strong> &mdash; /bin/ps parsing, SIGSTOP/SIGCONT/SIGKILL</li>
+                            <li><strong>ProcessManager</strong> &mdash; Process listing and control actions</li>
                             <li><strong>Watchdog</strong> &mdash; Automated protection, notifications</li>
                             <li><strong>DashboardView</strong> &mdash; SwiftUI dashboard with Swift Charts</li>
                             <li><strong>SettingsView</strong> &mdash; General + Advanced settings tabs</li>
@@ -705,23 +687,23 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Memory cleaning doesn't reclaim much</summary>
+                    <summary>Memory actions do not always show large gains</summary>
                     <div class="faq-answer">
-                        <p>This is normal if macOS is already managing memory efficiently. On Apple Silicon Macs with unified memory, the kernel aggressively compresses and manages pages. Quick Clean typically reclaims 0.1-1 GB, while Deep Clean can reclaim 1-5 GB depending on cached/inactive memory.</p>
+                        <p>This can be normal when the system is already in a healthy state. Results depend on current workload and reclaimable cache.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>A process shows "Not Responding" but works fine</summary>
+                    <summary>A process still appears high usage after action</summary>
                     <div class="faq-answer">
-                        <p>Some apps occasionally appear as "Not Responding" during heavy computation (e.g., video rendering, compiling). This is detected by the same mechanism macOS uses. If the app is actually working, you can safely ignore the status &mdash; it will clear once the task finishes.</p>
+                        <p>Some workloads naturally remain high for a while (for example compiling or rendering). Wait for the next poll cycles and verify usage trends over time.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Can I monitor processes owned by other users?</summary>
                     <div class="faq-answer">
-                        <p>No. System Guardian can only see and manage processes running under your user account. System-owned processes appear in the list but cannot be paused or killed without root privileges.</p>
+                        <p>No. System Guardian is limited to supported processes under your current user account and cannot control protected system services.</p>
                     </div>
                 </details>
 
