@@ -397,7 +397,18 @@
                 <details class="faq-item">
                     <summary>What is Process Protection?</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian can apply automated process protection based on the memory limit you configure. Protected system processes are excluded.</p>
+                        <p>When enabled, System Guardian can apply automated process protection to eligible user processes based on your configured memory limit. Protected system processes are excluded. Process control scope depends on macOS permissions and distribution type (for example App Sandbox vs Developer ID).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What auto-kill policy modes are available?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian supports two policy modes in Settings &rarr; Advanced:</p>
+                        <ul>
+                            <li><strong>Allowlist Only (default)</strong> &mdash; only processes matching your allowlist entries are eligible.</li>
+                            <li><strong>Never-Kill List</strong> &mdash; eligible processes above threshold are killable except entries in your never-kill list.</li>
+                        </ul>
                     </div>
                 </details>
 
@@ -534,6 +545,13 @@
                     <summary>Scheduled RAM Cleaning</summary>
                     <div class="faq-answer">
                         <p>Enable and configure automatic memory cleaning on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is Diagnostics Snapshot?</summary>
+                    <div class="faq-answer">
+                        <p>In Settings &rarr; Advanced, Diagnostics shows the latest automated-action timestamps and reasons (Low RAM action, scheduled action, process action, CPU spike alert). Use "Copy Diagnostics Snapshot" to export this information for support.</p>
                     </div>
                 </details>
             </div>
