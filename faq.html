@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Guardian — Frequently Asked Questions</title>
-    <meta name="description" content="Complete FAQ for System Guardian. Answers about memory monitoring, CPU tracking, GPU telemetry, process management, automated protections, and more.">
+    <meta name="description" content="Complete FAQ for System Guardian. Answers about memory monitoring, CPU tracking, GPU telemetry, process management, optional automation, and more.">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -53,7 +53,7 @@
             <a href="#cpu-monitoring">CPU Monitoring</a>
             <a href="#gpu-monitoring">GPU Monitoring</a>
             <a href="#process-management">Process Management</a>
-            <a href="#automated-protections">Automated Protections</a>
+            <a href="#automation-alerts">Automation & Alerts</a>
             <a href="#scheduled-cleaning">Scheduled Actions</a>
             <a href="#notifications">Notifications</a>
             <a href="#settings-general">Settings &mdash; General</a>
@@ -288,14 +288,14 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Why does the app show "already clean"?</summary>
+                    <summary>Why can a memory action report "no significant change"?</summary>
                     <div class="faq-answer">
-                        <p>If a clean reports "already clean," the system may already be in a healthy state with little reclaimable cache at that moment.</p>
+                        <p>If an action reports "no significant change," the system may already be in a healthy state with little reclaimable cache at that moment.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Can I trigger cleaning from the menu bar?</summary>
+                    <summary>Can I trigger memory actions from the menu bar?</summary>
                     <div class="faq-answer">
                         <p>Yes. You can trigger memory actions from the menu bar or from the Dashboard.</p>
                     </div>
@@ -357,7 +357,7 @@
                 <details class="faq-item">
                     <summary>Why does GPU show 0%?</summary>
                     <div class="faq-answer">
-                        <p>If your Mac's GPU is idle (no rendering, no compute), utilization will naturally be 0%. This is normal. GPU utilization spikes during video playback, 3D rendering, Metal compute workloads, or window compositor activity.</p>
+                        <p>If your computer's GPU is idle (no rendering, no compute), utilization will naturally be 0%. This is normal. GPU utilization spikes during video playback, 3D rendering, Metal compute workloads, or window compositor activity.</p>
                     </div>
                 </details>
             </div>
@@ -395,28 +395,28 @@
                 </details>
             </div>
 
-            <!-- Automated Protections -->
-            <div class="faq-section" id="automated-protections">
-                <h2>Automated Protections</h2>
+            <!-- Automation & Alerts -->
+            <div class="faq-section" id="automation-alerts">
+                <h2>Automation & Alerts</h2>
 
                 <details class="faq-item">
-                    <summary>What is Low RAM Protection?</summary>
+                    <summary>What is Low Memory Automation (Optional)?</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian can run a memory action automatically when free memory drops below your configured threshold.</p>
+                        <p>When enabled, System Guardian can notify you when available memory drops below your configured threshold and optionally run a memory action.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What is Process Protection?</summary>
+                    <summary>What is Auto Force Quit (Advanced)?</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian can apply automated process protection to eligible user processes based on your configured memory limit. Protected system processes are excluded. Process control scope depends on macOS permissions and distribution type (for example App Sandbox vs Developer ID).</p>
+                        <p>When enabled, System Guardian can apply an automated process memory-limit action to eligible user processes based on your configured memory limit. Protected system processes are excluded. Process control scope depends on macOS permissions and distribution type (for example App Sandbox vs Developer ID).</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What auto-kill policy modes are available?</summary>
+                    <summary>What Process Memory Limit Action policy modes are available?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian supports two policy modes in Settings &rarr; Advanced:</p>
+                        <p>System Guardian supports two policy modes in Settings &rarr; Advanced for Process Memory Limit Action:</p>
                         <ul>
                             <li><strong>Allowlist Only (default)</strong> &mdash; only processes matching your allowlist entries are eligible.</li>
                             <li><strong>Never-Kill List</strong> &mdash; eligible processes above threshold are killable except entries in your never-kill list.</li>
@@ -448,8 +448,8 @@
                     <div class="faq-answer">
                         <p>System Guardian can run memory actions on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
                         <ul>
-                            <li><strong>Interval Mode</strong> &mdash; Cleans at a fixed interval (15 minutes to 8 hours)</li>
-                            <li><strong>Time-of-Day Mode</strong> &mdash; Cleans once per day at a specific time you set</li>
+                            <li><strong>Interval Mode</strong> &mdash; Cycles at a fixed interval (15 minutes to 8 hours)</li>
+                            <li><strong>Time-of-Day Mode</strong> &mdash; Runs once per day at a specific time you set</li>
                         </ul>
                     </div>
                 </details>
@@ -479,8 +479,8 @@
                         <table>
                             <thead><tr><th>Notification</th><th>Trigger</th></tr></thead>
                             <tbody>
-                                <tr><td><strong>Low RAM Alert</strong></td><td>Free memory dropped below threshold and a memory action was triggered</td></tr>
-                                <tr><td><strong>Process Protection Action</strong></td><td>A configured process memory limit was exceeded</td></tr>
+                                <tr><td><strong>Low Memory Automation Alert</strong></td><td>Available memory dropped below threshold and a memory action was triggered</td></tr>
+                                <tr><td><strong>Process Memory Limit Action</strong></td><td>A configured process memory limit was exceeded</td></tr>
                                 <tr><td><strong>CPU Spike Alert</strong></td><td>CPU stayed above threshold for the configured duration</td></tr>
                             </tbody>
                         </table>
@@ -497,7 +497,7 @@
                 <details class="faq-item">
                     <summary>Can I disable specific notification types?</summary>
                     <div class="faq-answer">
-                        <p>Each protection feature has its own toggle. You can disable specific automation and alert types independently.</p>
+                        <p>Each automation feature has its own toggle. You can disable specific automation and alert types independently.</p>
                     </div>
                 </details>
             </div>
@@ -509,7 +509,7 @@
                 <details class="faq-item">
                     <summary>Launch at Login</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian automatically starts when you log into your Mac. This uses the <code>SMAppService</code> API (the modern macOS method). Verify in System Settings &rarr; General &rarr; Login Items &amp; Extensions.</p>
+                        <p>When enabled, System Guardian automatically starts when you log into your computer. This uses the <code>SMAppService</code> API (the modern macOS method). Verify in System Settings &rarr; General &rarr; Login Items &amp; Extensions.</p>
                     </div>
                 </details>
 
@@ -533,7 +533,7 @@
                 <h2>Settings &mdash; Advanced Tab</h2>
 
                 <details class="faq-item">
-                    <summary>Process Protection</summary>
+                    <summary>Auto Force Quit (Advanced)</summary>
                     <div class="faq-answer">
                         <p>Per-process memory limit with an enable/disable toggle. Any process exceeding this limit is force-quit (with protected system processes excluded).</p>
                     </div>
@@ -563,7 +563,7 @@
                 <details class="faq-item">
                     <summary>What is Diagnostics Snapshot?</summary>
                     <div class="faq-answer">
-                        <p>In Settings &rarr; Advanced, Diagnostics shows the latest automated-action timestamps and reasons (Low RAM action, scheduled action, process action, CPU spike alert). Use "Copy Diagnostics Snapshot" to export this information for support.</p>
+                        <p>In Settings &rarr; Advanced, Diagnostics shows the latest automated-action timestamps and reasons (Low Memory Automation action, scheduled action, process action, CPU spike alert). Use "Copy Diagnostics Snapshot" to export this information for support.</p>
                     </div>
                 </details>
             </div>
@@ -585,9 +585,9 @@
                         <ul>
                             <li>Manual memory actions</li>
                             <li>Scheduled memory action triggered + result</li>
-                            <li>Low RAM memory action triggered</li>
+                            <li>Low Memory Automation action triggered</li>
                             <li>Manual process force quit actions</li>
-                            <li>Automated process protection actions</li>
+                            <li>Automated process memory-limit actions</li>
                             <li>CPU spike alert triggered</li>
                         </ul>
                     </div>
@@ -601,11 +601,11 @@
                 <details class="faq-item">
                     <summary>What are hardware-aware defaults?</summary>
                     <div class="faq-answer">
-                        <p>On first launch, System Guardian detects your Mac's total RAM and core count and sets sensible default thresholds. An 8 GB MacBook Air gets different defaults than a 192 GB Mac Pro.</p>
+                        <p>On first launch, System Guardian detects your computer's total RAM and core count and sets sensible default thresholds. Defaults are tuned to the detected hardware profile.</p>
                         <table>
                             <thead><tr><th>Setting</th><th>Default Formula</th><th>Example (32 GB / 10 cores)</th></tr></thead>
                             <tbody>
-                                <tr><td>Low RAM threshold</td><td>15% of total RAM (min 2 GB)</td><td>4.8 GB</td></tr>
+                                <tr><td>Low Memory threshold</td><td>15% of total RAM (min 2 GB)</td><td>4.8 GB</td></tr>
                                 <tr><td>Per-process memory limit</td><td>25% of total RAM (min 2 GB)</td><td>8 GB</td></tr>
                                 <tr><td>CPU highlight</td><td>12.5% of total cores (min 200%)</td><td>200%</td></tr>
                             </tbody>
@@ -635,7 +635,7 @@
                 <details class="faq-item">
                     <summary>Does System Guardian connect to the internet?</summary>
                     <div class="faq-answer">
-                        <p>No. System Guardian makes <strong>zero network requests</strong>. There is no analytics, no telemetry, no update checks, no cloud sync. Your system data never leaves your Mac.</p>
+                        <p>No. System Guardian makes <strong>zero network requests</strong>. There is no analytics, no telemetry, no update checks, no cloud sync. Your system data never leaves your computer.</p>
                     </div>
                 </details>
 
@@ -697,7 +697,7 @@
                             <li><strong>AppState</strong> &mdash; Central @Published state hub, polling, cleaning</li>
                             <li><strong>SystemMonitor</strong> &mdash; Kernel APIs: host_statistics64, host_processor_info, IOKit</li>
                             <li><strong>ProcessManager</strong> &mdash; Process listing and control actions</li>
-                            <li><strong>Watchdog</strong> &mdash; Automated protection, notifications</li>
+                            <li><strong>Watchdog</strong> &mdash; Optional automation, notifications</li>
                             <li><strong>DashboardView</strong> &mdash; SwiftUI dashboard with Swift Charts</li>
                             <li><strong>SettingsView</strong> &mdash; General + Advanced settings tabs</li>
                         </ul>
