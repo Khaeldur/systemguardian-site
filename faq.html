@@ -317,7 +317,7 @@
                 <details class="faq-item">
                     <summary>How is CPU usage calculated?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian reads per-core tick counts from <code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code> twice (with a delay), then calculates the delta between samples. This gives accurate instantaneous CPU usage rather than cumulative averages. Reported values include User, System, and Total percentages.</p>
+                        <p>System Guardian reads per-core tick counts from <code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code> twice (with a delay), then calculates the delta between samples. This provides a near real-time CPU estimate based on sample deltas, not cumulative averages. Reported values include User, System, and Total percentages.</p>
                     </div>
                 </details>
 
