@@ -280,8 +280,8 @@
                     <div class="faq-answer">
                         <p>The labels are intentionally plain:</p>
                         <ul>
-                            <li><strong>Standard Memory Action</strong> &mdash; lightweight routine reclaim attempt.</li>
-                            <li><strong>Intensive Memory Action</strong> &mdash; stronger reclaim attempt with higher temporary system load.</li>
+                            <li><strong>Standard Memory Action</strong> &mdash; lightweight cache-pressure cycle.</li>
+                            <li><strong>Intensive Memory Action</strong> &mdash; stronger cycle with higher temporary system load.</li>
                             <li><strong>Process Memory Limit Action</strong> &mdash; optional automatic force-quit action for eligible user processes above your configured limit.</li>
                         </ul>
                     </div>
@@ -535,7 +535,7 @@
                 <details class="faq-item">
                     <summary>Auto Force Quit (Advanced)</summary>
                     <div class="faq-answer">
-                        <p>Per-process memory limit with an enable/disable toggle. Any process exceeding this limit is force-quit (with protected system processes excluded).</p>
+                        <p>Per-process memory limit with an enable/disable toggle. Selected eligible user processes over this limit may be force quit (with protected system processes excluded).</p>
                     </div>
                 </details>
 
