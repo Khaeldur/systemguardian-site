@@ -276,6 +276,18 @@
                 </details>
 
                 <details class="faq-item">
+                    <summary>Why does the app use "Standard" and "Intensive" labels?</summary>
+                    <div class="faq-answer">
+                        <p>The labels are intentionally plain:</p>
+                        <ul>
+                            <li><strong>Standard Memory Action</strong> &mdash; lightweight routine reclaim attempt.</li>
+                            <li><strong>Intensive Memory Action</strong> &mdash; stronger reclaim attempt with higher temporary system load.</li>
+                            <li><strong>Process Memory Limit Action</strong> &mdash; optional automatic force-quit action for eligible user processes above your configured limit.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item">
                     <summary>Why does the app show "already clean"?</summary>
                     <div class="faq-answer">
                         <p>If a clean reports "already clean," the system may already be in a healthy state with little reclaimable cache at that moment.</p>
