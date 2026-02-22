@@ -110,6 +110,13 @@
                         <p>No. System Guardian runs entirely in user space and does not require administrator access for normal operation.</p>
                     </div>
                 </details>
+
+                <details class="faq-item">
+                    <summary>Who is System Guardian designed for?</summary>
+                    <div class="faq-answer">
+                        <p>System Guardian is useful in resource-intensive workflows such as local AI model inference, development environments, and other compute-heavy applications where memory pressure changes quickly during active work.</p>
+                    </div>
+                </details>
             </div>
 
             <!-- Menu Bar -->
@@ -247,6 +254,7 @@
             <!-- Memory Actions -->
             <div class="faq-section" id="memory-cleaning">
                 <h2>Memory Actions</h2>
+                <p>macOS manages memory automatically. Memory actions adjust cache behavior and memory pressure; effects vary by workload.</p>
 
                 <details class="faq-item">
                     <summary>What does the Standard action do?</summary>
@@ -409,7 +417,7 @@
                 <details class="faq-item">
                     <summary>What is Auto Force Quit (Advanced)?</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian can apply an automated process memory-limit action to eligible user processes based on your configured memory limit. Protected system processes are excluded. Process control scope depends on macOS permissions and distribution type (for example App Sandbox vs Developer ID).</p>
+                        <p>When enabled, System Guardian can apply an automated process memory-limit action to selected eligible user processes based on your configured limit and policy mode. Protected system processes are excluded. Process control scope depends on macOS permissions and distribution type (for example App Sandbox vs Developer ID).</p>
                     </div>
                 </details>
 
@@ -694,7 +702,7 @@
                         <p>~2,400 lines of Swift across 7 source files. No external dependencies.</p>
                         <ul>
                             <li><strong>SystemGuardianApp</strong> &mdash; App entry point, NSStatusItem, menu bar</li>
-                            <li><strong>AppState</strong> &mdash; Central @Published state hub, polling, cleaning</li>
+                            <li><strong>AppState</strong> &mdash; Central @Published state hub, polling, memory actions</li>
                             <li><strong>SystemMonitor</strong> &mdash; Kernel APIs: host_statistics64, host_processor_info, IOKit</li>
                             <li><strong>ProcessManager</strong> &mdash; Process listing and control actions</li>
                             <li><strong>Watchdog</strong> &mdash; Optional automation, notifications</li>
