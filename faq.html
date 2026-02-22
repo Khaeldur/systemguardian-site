@@ -49,12 +49,12 @@
             <a href="#menu-bar">Menu Bar</a>
             <a href="#dashboard">Dashboard</a>
             <a href="#memory-monitoring">Memory Monitoring</a>
-            <a href="#memory-cleaning">Memory Cleaning</a>
+            <a href="#memory-cleaning">Memory Actions</a>
             <a href="#cpu-monitoring">CPU Monitoring</a>
             <a href="#gpu-monitoring">GPU Monitoring</a>
             <a href="#process-management">Process Management</a>
             <a href="#automated-protections">Automated Protections</a>
-            <a href="#scheduled-cleaning">Scheduled Cleaning</a>
+            <a href="#scheduled-cleaning">Scheduled Actions</a>
             <a href="#notifications">Notifications</a>
             <a href="#settings-general">Settings &mdash; General</a>
             <a href="#settings-advanced">Settings &mdash; Advanced</a>
@@ -244,21 +244,21 @@
                 </details>
             </div>
 
-            <!-- Memory Cleaning -->
+            <!-- Memory Actions -->
             <div class="faq-section" id="memory-cleaning">
-                <h2>Memory Cleaning</h2>
+                <h2>Memory Actions</h2>
 
                 <details class="faq-item">
-                    <summary>What does Quick Clean do?</summary>
+                    <summary>What does the Standard action do?</summary>
                     <div class="faq-answer">
-                        <p>Quick Clean calls <code>malloc_zone_pressure_relief(nil, 0)</code>, which asks all malloc zones in every running process to release pages they are holding but not actively using. This is a lightweight operation that completes in about 1 second.</p>
+                        <p>The Standard action calls <code>malloc_zone_pressure_relief(nil, 0)</code>, which asks all malloc zones in every running process to release pages they are holding but not actively using. This is a lightweight operation that completes in about 1 second.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What does Deep Clean do?</summary>
+                    <summary>What does the Intensive action do?</summary>
                     <div class="faq-answer">
-                        <p>Deep Clean performs a stronger memory action than Quick Clean. It may take longer and can temporarily reduce responsiveness while it runs.</p>
+                        <p>The Intensive action performs a stronger memory action than the Standard action. It may take longer and can temporarily reduce responsiveness while it runs.</p>
                         <ol>
                             <li><strong>Runs multiple internal memory-pressure cycles</strong> with safety limits</li>
                             <li><strong>Releases temporary allocations</strong> when each cycle completes</li>
@@ -269,9 +269,9 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Is Deep Clean safe?</summary>
+                    <summary>Is Intensive mode safe?</summary>
                     <div class="faq-answer">
-                        <p>Deep Clean is designed with safety limits, but it can temporarily increase resource usage while running. Use it only when needed and avoid running it during latency-sensitive work.</p>
+                        <p>Intensive mode is designed with safety limits, but it can temporarily increase resource usage while running. Use it only when needed and avoid running it during latency-sensitive work.</p>
                     </div>
                 </details>
 
@@ -427,12 +427,12 @@
                 </details>
             </div>
 
-            <!-- Scheduled Cleaning -->
+            <!-- Scheduled Actions -->
             <div class="faq-section" id="scheduled-cleaning">
-                <h2>Scheduled Cleaning</h2>
+                <h2>Scheduled Actions</h2>
 
                 <details class="faq-item">
-                    <summary>How does scheduled cleaning work?</summary>
+                    <summary>How do scheduled actions work?</summary>
                     <div class="faq-answer">
                         <p>System Guardian can run memory actions on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
                         <ul>
@@ -443,16 +443,16 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Can I choose the cleaning method for scheduled cleans?</summary>
+                    <summary>Can I choose the action method for scheduled actions?</summary>
                     <div class="faq-answer">
                         <p>Yes. You can choose the scheduled memory-action method independently from low-memory automation settings.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Will scheduled cleaning run if a clean is already in progress?</summary>
+                    <summary>Will a scheduled action run if one is already in progress?</summary>
                     <div class="faq-answer">
-                        <p>No. If a manual or automatic clean is already running, the scheduled clean is skipped. There is also a 5-minute cooldown between scheduled cleans.</p>
+                        <p>No. If a manual or automatic action is already running, the scheduled action is skipped. There is also a 5-minute cooldown between scheduled actions.</p>
                     </div>
                 </details>
             </div>
@@ -542,9 +542,9 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Scheduled RAM Cleaning</summary>
+                    <summary>Scheduled Memory Actions</summary>
                     <div class="faq-answer">
-                        <p>Enable and configure automatic memory cleaning on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
+                        <p>Enable and configure automatic memory actions on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
                     </div>
                 </details>
 
@@ -572,7 +572,7 @@
                     <div class="faq-answer">
                         <ul>
                             <li>Manual memory actions</li>
-                            <li>Scheduled clean triggered + result</li>
+                            <li>Scheduled memory action triggered + result</li>
                             <li>Low RAM memory action triggered</li>
                             <li>Manual process force quit actions</li>
                             <li>Automated process protection actions</li>
