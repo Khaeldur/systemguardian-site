@@ -49,12 +49,12 @@
             <a href="#menu-bar">Menu Bar</a>
             <a href="#dashboard">Dashboard</a>
             <a href="#memory-monitoring">Memory Monitoring</a>
-            <a href="#memory-memory actions">Memory Cleaning</a>
+            <a href="#memory-actions">Memory Actions</a>
             <a href="#cpu-monitoring">CPU Monitoring</a>
             <a href="#gpu-monitoring">GPU Monitoring</a>
             <a href="#process-management">Process Management</a>
             <a href="#automated-protections">Optional Automation</a>
-            <a href="#scheduled-memory actions">Scheduled Cleaning</a>
+            <a href="#scheduled-actions">Scheduled Actions</a>
             <a href="#notifications">Notifications</a>
             <a href="#settings-general">Settings &mdash; General</a>
             <a href="#settings-advanced">Settings &mdash; Advanced</a>
@@ -76,7 +76,7 @@
                 <details class="faq-item">
                     <summary>What is System Guardian?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian is a native macOS menu bar app that monitors your Mac's CPU, GPU, and memory in real time. It uses direct kernel APIs to provide accurate telemetry and can automatically clean memory, kill runaway processes, and alert you when things go wrong.</p>
+                        <p>System Guardian is a native macOS menu bar app that monitors your Mac's CPU, GPU, and memory in real time. It uses direct kernel APIs to provide accurate telemetry and can optionally run memory actions, kill runaway processes, and alert you when things go wrong.</p>
                     </div>
                 </details>
 
@@ -245,9 +245,9 @@
                 </details>
             </div>
 
-            <!-- Memory Cleaning -->
-            <div class="faq-section" id="memory-memory actions">
-                <h2>Memory Cleaning</h2>
+            <!-- Memory Actions -->
+            <div class="faq-section" id="memory-actions">
+                <h2>Memory Actions</h2>
 
                 <details class="faq-item">
                     <summary>What does "Standard Memory Action" do?</summary>
@@ -264,9 +264,9 @@
                             <li><strong>Allocates</strong> memory chunks (64-512 MB each) up to 80% of current free memory or 50% of total RAM</li>
                             <li><strong>Writes</strong> zeros to every allocated page (forces physical page assignment)</li>
                             <li><strong>Releases</strong> all allocated memory</li>
-                            <li><strong>Calls</strong> <code>malloc_zone_pressure_relief</code> to clean up</li>
+                            <li><strong>Calls</strong> <code>malloc_zone_pressure_relief</code> to complete the cycle</li>
                         </ol>
-                        <p>This takes 5-10 seconds and can change several GB of inactive/cached pages.</p>
+                        <p>This takes 5-10 seconds and may change inactive/cached pages depending on workload.</p>
                     </div>
                 </details>
 
@@ -278,9 +278,9 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Why does the app show "already clean"?</summary>
+                    <summary>Why does the app show "no significant change"?</summary>
                     <div class="faq-answer">
-                        <p>If a clean reports "already clean," it means macOS had very little changeable memory. This typically happens right after a previous clean or when the system is genuinely under low memory usage.</p>
+                        <p>If a memory action reports "no significant change," macOS likely had very little reducible cached memory at that moment. This typically happens right after a previous memory action or when the system is genuinely under low memory usage.</p>
                     </div>
                 </details>
 
@@ -404,9 +404,9 @@
                 <h2>Optional Automation</h2>
 
                 <details class="faq-item">
-                    <summary>What is Low RAM Protection?</summary>
+                    <summary>What is Low Memory Automation?</summary>
                     <div class="faq-answer">
-                        <p>When enabled (Settings &rarr; General), System Guardian automatically triggers a memory clean when your free RAM drops below a configurable threshold. You choose the GB threshold and memory actions method (Standard Memory Action or Intensive Memory Action).</p>
+                        <p>When enabled (Settings &rarr; General), System Guardian optionally triggers a memory action when your free RAM drops below a configurable threshold. You choose the GB threshold and memory actions method (Standard Memory Action or Intensive Memory Action).</p>
                     </div>
                 </details>
 
@@ -427,37 +427,37 @@
                 <details class="faq-item">
                     <summary>Are there cooldowns to prevent alert spam?</summary>
                     <div class="faq-answer">
-                        <p>Yes. Cooldown periods: Low RAM auto-clean (60s), auto-kill (30s per process), CPU spike alert (120s), and scheduled memory actions (5 minutes minimum).</p>
+                        <p>Yes. Cooldown periods: Low-memory automation action (60s), auto-kill (30s per process), CPU spike alert (120s), and scheduled memory actions (5 minutes minimum).</p>
                     </div>
                 </details>
             </div>
 
-            <!-- Scheduled Cleaning -->
-            <div class="faq-section" id="scheduled-memory actions">
-                <h2>Scheduled Cleaning</h2>
+            <!-- Scheduled Actions -->
+            <div class="faq-section" id="scheduled-actions">
+                <h2>Scheduled Actions</h2>
 
                 <details class="faq-item">
-                    <summary>How does scheduled memory actions work?</summary>
+                    <summary>How do scheduled memory actions work?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian can automatically clean memory on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
+                        <p>System Guardian can optionally run memory actions on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
                         <ul>
-                            <li><strong>Interval Mode</strong> &mdash; Cleans at a fixed interval (15 minutes to 8 hours)</li>
-                            <li><strong>Time-of-Day Mode</strong> &mdash; Cleans once per day at a specific time you set</li>
+                            <li><strong>Interval Mode</strong> &mdash; Runs at a fixed interval (15 minutes to 8 hours)</li>
+                            <li><strong>Time-of-Day Mode</strong> &mdash; Runs once per day at a specific time you set</li>
                         </ul>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Can I choose the memory actions method for scheduled cleans?</summary>
+                    <summary>Can I choose the memory actions method for scheduled actions?</summary>
                     <div class="faq-answer">
-                        <p>Yes. You can pick either "Clean" (quick) or "Intensive Memory Action" (aggressive) for scheduled memory actions, independent of the method used for Low RAM Protection.</p>
+                        <p>Yes. You can pick either Standard Memory Action or Intensive Memory Action for scheduled actions, independent of the method used for Low Memory Automation.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Will scheduled memory actions run if a clean is already in progress?</summary>
+                    <summary>Will scheduled memory actions run if a memory action is already in progress?</summary>
                     <div class="faq-answer">
-                        <p>No. If a manual or automatic clean is already running, the scheduled clean is skipped. There is also a 5-minute cooldown between scheduled cleans.</p>
+                        <p>No. If a manual or memory action is already running, the scheduled action is skipped. There is also a 5-minute cooldown between scheduled actions.</p>
                     </div>
                 </details>
             </div>
@@ -472,7 +472,7 @@
                         <table>
                             <thead><tr><th>Notification</th><th>Trigger</th></tr></thead>
                             <tbody>
-                                <tr><td><strong>Low RAM Alert</strong></td><td>Free memory dropped below threshold and auto-clean triggered</td></tr>
+                                <tr><td><strong>Low RAM Alert</strong></td><td>Available memory dropped below threshold and optional action triggered</td></tr>
                                 <tr><td><strong>Process Auto-Killed</strong></td><td>A runaway process exceeded your memory limit</td></tr>
                                 <tr><td><strong>CPU Spike Alert</strong></td><td>CPU stayed above threshold for the configured duration</td></tr>
                             </tbody>
@@ -490,7 +490,7 @@
                 <details class="faq-item">
                     <summary>Can I disable specific notification types?</summary>
                     <div class="faq-answer">
-                        <p>Each protection feature has its own toggle. Disabling "CPU Spike Alert" stops CPU notifications. Disabling "Kill Runaway Process" stops auto-kill notifications. Disabling "Low RAM Protection" stops low-RAM notifications.</p>
+                        <p>Each protection feature has its own toggle. Disabling "CPU Spike Alert" stops CPU notifications. Disabling "Kill Runaway Process" stops auto-kill notifications. Disabling "Low Memory Automation" stops low-memory automation notifications.</p>
                     </div>
                 </details>
             </div>
@@ -547,9 +547,9 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Scheduled RAM Cleaning</summary>
+                    <summary>Scheduled Memory Actions</summary>
                     <div class="faq-answer">
-                        <p>Enable and configure automatic memory memory actions on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
+                        <p>Enable and configure automatic memory actions on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
                     </div>
                 </details>
             </div>
@@ -569,9 +569,9 @@
                     <summary>What events are logged?</summary>
                     <div class="faq-answer">
                         <ul>
-                            <li>Manual quick clean and deep clean</li>
-                            <li>Scheduled clean triggered + result</li>
-                            <li>Low RAM auto-clean triggered</li>
+                            <li>Manual Standard and Intensive memory actions</li>
+                            <li>Scheduled memory action triggered + result</li>
+                            <li>Low-memory automation action triggered</li>
                             <li>Process paused, resumed, or force-quit</li>
                             <li>Runaway process auto-killed</li>
                             <li>CPU spike alert triggered</li>
@@ -705,7 +705,7 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Memory memory actions doesn't change much</summary>
+                    <summary>Memory actions may vary by workload</summary>
                     <div class="faq-answer">
                         <p>This is normal if macOS is already managing memory efficiently. On Apple Silicon Macs with unified memory, the kernel aggressively compresses and manages pages. Standard Memory Action typically changes 0.1-1 GB, while Intensive Memory Action can change 1-5 GB depending on cached/inactive memory.</p>
                     </div>
