@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Guardian — Real-Time System Monitor</title>
-    <meta name="description" content="Menu bar system monitor for CPU, GPU, memory, swap, and processes with local alerts, on-device diagnostics, and optional memory action automation.">
-    <meta property="og:title" content="System Guardian — System Monitor">
-    <meta property="og:description" content="Menu bar system monitoring for CPU, GPU, memory, and swap.">
+    <title>System Guardian — Menu Bar System Monitor for macOS</title>
+    <meta name="description" content="Professional menu bar system monitor for CPU, memory pressure, GPU, processes, and local alerts on macOS.">
+    <meta property="og:title" content="System Guardian — Menu Bar System Monitor for macOS">
+    <meta property="og:description" content="Professional menu bar system monitor for CPU, memory pressure, GPU, processes, and local alerts on macOS.">
     <meta property="og:image" content="images/app-icon-256.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -44,10 +44,7 @@
         <div class="hero-content">
             <img src="images/app-icon-256.png" alt="System Guardian app icon" class="hero-icon" width="128" height="128">
             <h1>System Guardian</h1>
-            <p class="hero-tagline">Real-time system monitoring from your menu bar. Focused, private, and fully local.</p>
-            <p class="section-subtitle" style="margin: 0 auto 2rem; max-width: 860px;">
-                System Guardian is a menu bar system monitor for CPU, GPU, memory, swap, and processes, with local alerts and on-device diagnostics.
-            </p>
+            <p class="hero-tagline">Professional menu bar system monitoring for CPU, GPU, memory, swap, and processes. Private, local, and configurable.</p>
             <div class="hero-buttons">
                 <a href="#download" class="btn btn-primary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -55,33 +52,17 @@
                 </a>
                 <a href="#features" class="btn btn-outline">Learn More</a>
             </div>
+            <img src="images/screenshot-menu.png" alt="System Guardian menu bar dropdown showing real-time system health" class="hero-image" width="600">
         </div>
         <div class="scroll-indicator" aria-hidden="true">&#8595;</div>
-    </section>
-
-    <!-- Overview -->
-    <section id="overview" style="background: var(--bg-deep);">
-        <div class="container">
-            <div class="text-center">
-                <span class="section-label animate-in">Overview</span>
-                <h2 class="section-title animate-in">Monitoring first. Optional actions when needed.</h2>
-            </div>
-            <div class="glass-card animate-in" style="max-width: 980px; margin: 0 auto;">
-                <p>System Guardian is useful in resource-intensive workflows such as local AI model inference, development environments, and other compute-heavy applications.</p>
-                <p>System Guardian provides real-time visibility and configurable automation to support monitoring and user-directed actions under changing memory pressure during demanding tasks.</p>
-                <p>See top processes, track memory pressure, set thresholds, and optionally enable automation for memory actions. Run Standard or Intensive memory actions manually or on a schedule when needed. Advanced users can enable Auto Force Quit with explicit confirmation and allowlist controls.</p>
-                <p>Privacy-first by design: all processing stays on your device, with no analytics SDKs and no cloud telemetry.</p>
-                <p><strong>Note:</strong> macOS manages memory automatically. Memory actions adjust cache behavior and memory pressure; effects vary by workload.</p>
-            </div>
-        </div>
     </section>
 
     <!-- Features -->
     <section id="features">
         <div class="container text-center">
             <span class="section-label animate-in">Features</span>
-            <h2 class="section-title animate-in">The tools you need for system visibility, with local control.</h2>
-            <p class="section-subtitle animate-in">Real-time local telemetry with zero network requests. Built entirely with Apple frameworks.</p>
+            <h2 class="section-title animate-in">Clear system telemetry with optional automation.</h2>
+            <p class="section-subtitle animate-in">Built with Apple frameworks, local alerts, and no analytics SDKs or cloud telemetry.</p>
 
             <div class="grid-3">
                 <div class="glass-card animate-in delay-1">
@@ -102,27 +83,19 @@
                 <div class="glass-card animate-in delay-1">
                     <span class="card-icon">&#128167;</span>
                     <h3>Memory Actions</h3>
-                    <p>Manual and optional automatic memory actions with configurable thresholds and clear in-app status updates.</p>
+                    <p>Standard Memory Action runs a lightweight cache-pressure cycle. Intensive Memory Action runs a stronger cycle and may briefly reduce responsiveness.</p>
                 </div>
                 <div class="glass-card animate-in delay-2">
                     <span class="card-icon">&#128737;&#65039;</span>
-                    <h3>Configurable Alerts</h3>
-                    <p>Low-memory, process, and CPU alerts with user-controlled thresholds, cooldowns, and notification preferences.</p>
+                    <h3>Optional Automation</h3>
+                    <p>Low-memory thresholds, scheduled memory actions, CPU spike alerts, and advanced process-limit controls are user-configurable and optional.</p>
                 </div>
                 <div class="glass-card animate-in delay-3">
                     <span class="card-icon">&#128736;&#65039;</span>
-                    <h3>Process List</h3>
-                    <p>View top processes by CPU or memory usage and take manual action directly from the app when needed. Process Memory Limit Action supports Allowlist Only and Never-Kill List policy modes.</p>
-                </div>
-                <div class="glass-card animate-in delay-1">
-                    <span class="card-icon">&#128203;</span>
-                    <h3>Diagnostics Snapshot</h3>
-                    <p>Advanced settings include a copyable diagnostics snapshot with the last automated action timestamps and reasons.</p>
+                    <h3>Process Visibility</h3>
+                    <p>Top processes by CPU or memory with clear per-process telemetry for fast diagnosis under heavy workloads.</p>
                 </div>
             </div>
-            <p class="section-subtitle animate-in" style="margin: 2rem auto 0; max-width: 900px;">
-                Note: macOS manages memory automatically. Memory actions may change cache behavior and memory pressure; effects vary by workload.
-            </p>
         </div>
     </section>
 
@@ -131,14 +104,12 @@
         <div class="container text-center">
             <span class="section-label animate-in">Screenshots</span>
             <h2 class="section-title animate-in">See it in action.</h2>
-            <p class="section-subtitle animate-in">From the menu bar to the full dashboard, every detail is designed for clarity.</p>
+            <p class="section-subtitle animate-in">Current App Store screenshots from the menu bar and dashboard.</p>
 
             <div class="screenshot-gallery">
-                <img src="images/screenshot-menu.png" alt="Menu bar panel with system status, memory actions, and top processes" class="animate-in screenshot-wide" loading="lazy" width="800">
-                <img src="images/screenshot-dashboard.png" alt="Complete system dashboard with CPU, memory, and GPU metrics" class="animate-in" loading="lazy" width="800">
-                <img src="images/screenshot-general.png" alt="General settings showing notifications and low memory automation options" class="animate-in" loading="lazy" width="800">
-                <img src="images/screenshot-advanced.png" alt="Advanced settings showing Auto Force Quit, CPU alerts, and scheduled actions" class="animate-in" loading="lazy" width="800">
-            </div>
+                <img src="images/screenshot-dashboard.png" alt="Complete system dashboard with CPU, memory, and GPU gauges" class="animate-in screenshot-wide" loading="lazy" width="800">
+                <img src="images/screenshot-general.png" alt="Settings - automatic memory protection with configurable thresholds" class="animate-in delay-1" loading="lazy">
+                <img src="images/screenshot-advanced.png" alt="Settings - advanced process control and CPU spike alerts" class="animate-in delay-2" loading="lazy">            </div>
         </div>
     </section>
 
@@ -147,8 +118,8 @@
         <div class="container">
             <div class="text-center">
                 <span class="section-label animate-in">Under the Hood</span>
-                <h2 class="section-title animate-in">Accurate telemetry. Lightweight runtime.</h2>
-                <p class="section-subtitle animate-in">First-party system APIs for low-overhead monitoring and local analysis.</p>
+                <h2 class="section-title animate-in">Accurate telemetry. Minimal overhead.</h2>
+                <p class="section-subtitle animate-in">First-party macOS APIs for low-overhead monitoring and local analysis.</p>
             </div>
 
             <table class="tech-table animate-in">
@@ -182,8 +153,14 @@
                     </tr>
                     <tr>
                         <td>Processes</td>
-                        <td>System APIs</td>
-                        <td>Process usage listing and manual control from the app UI</td>
+                        <td>POSIX</td>
+                        <td><code>/bin/ps</code> via <code>Process()</code> (no shell)</td>
+                    </tr>
+                    <tr>
+                        <td>Standard Memory Action</td><td>libc</td><td><code>malloc_zone_pressure_relief(nil, 0)</code></td>
+                    </tr>
+                    <tr>
+                        <td>Intensive Memory Action</td><td>libc</td><td><code>malloc</code> + <code>memset</code> pressure &rarr; <code>free</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -194,8 +171,8 @@
     <section id="privacy" style="background: var(--bg-deep);">
         <div class="container text-center">
             <span class="section-label animate-in">Privacy First</span>
-            <h2 class="section-title animate-in">Your data never leaves your system.</h2>
-            <p class="section-subtitle animate-in">No analytics. No telemetry. No network connections. Not even an update check.</p>
+            <h2 class="section-title animate-in">Your data never leaves your device.</h2>
+            <p class="section-subtitle animate-in">No analytics SDKs. No cloud telemetry. Local processing only.</p>
 
             <div class="privacy-grid">
                 <div class="privacy-item animate-in delay-1">
@@ -223,7 +200,7 @@
                     <span class="privacy-icon">&#128187;</span>
                     <div>
                         <h4>All Data On-Device</h4>
-                        <p>System metrics, settings, and logs stay entirely on your system.</p>
+                        <p>System metrics, settings, and logs stay entirely on your Mac.</p>
                     </div>
                 </div>
             </div>
@@ -272,12 +249,12 @@
         <div class="container text-center">
             <span class="section-label animate-in">Get Started</span>
             <h2 class="section-title animate-in">Download System Guardian</h2>
-            <p class="section-subtitle animate-in">Available on the App Store and as a direct download.</p>
+            <p class="section-subtitle animate-in">Available on the Mac App Store.</p>
 
             <div class="hero-buttons animate-in">
                 <a href="#" class="btn btn-primary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                    App Store
+                    Mac App Store
                 </a>
                 <a href="https://github.com/Khaeldur" target="_blank" rel="noopener" class="btn btn-outline">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>

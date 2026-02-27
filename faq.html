@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Guardian — Frequently Asked Questions</title>
-    <meta name="description" content="Complete FAQ for System Guardian. Answers about memory monitoring, CPU tracking, GPU telemetry, process management, optional automation, and more.">
+    <meta name="description" content="Complete FAQ for System Guardian. Answers about memory monitoring, CPU tracking, GPU telemetry, process management, automated protections, and more.">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -49,12 +49,12 @@
             <a href="#menu-bar">Menu Bar</a>
             <a href="#dashboard">Dashboard</a>
             <a href="#memory-monitoring">Memory Monitoring</a>
-            <a href="#memory-cleaning">Memory Actions</a>
+            <a href="#memory-memory actions">Memory Cleaning</a>
             <a href="#cpu-monitoring">CPU Monitoring</a>
             <a href="#gpu-monitoring">GPU Monitoring</a>
             <a href="#process-management">Process Management</a>
-            <a href="#automation-alerts">Automation & Alerts</a>
-            <a href="#scheduled-cleaning">Scheduled Actions</a>
+            <a href="#automated-protections">Optional Automation</a>
+            <a href="#scheduled-memory actions">Scheduled Cleaning</a>
             <a href="#notifications">Notifications</a>
             <a href="#settings-general">Settings &mdash; General</a>
             <a href="#settings-advanced">Settings &mdash; Advanced</a>
@@ -76,7 +76,7 @@
                 <details class="faq-item">
                     <summary>What is System Guardian?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian is a native macOS menu bar app that monitors CPU, GPU, memory, and swap in real time. It provides local alerts and user-controlled actions for resource management.</p>
+                        <p>System Guardian is a native macOS menu bar app that monitors your Mac's CPU, GPU, and memory in real time. It uses direct kernel APIs to provide accurate telemetry and can automatically clean memory, kill runaway processes, and alert you when things go wrong.</p>
                     </div>
                 </details>
 
@@ -96,7 +96,7 @@
                     <summary>How do I install it?</summary>
                     <div class="faq-answer">
                         <ol>
-                            <li>Download from the App Store or from the GitHub releases page.</li>
+                            <li>Download from the Mac App Store or from the GitHub releases page.</li>
                             <li>If using the DMG, open it and drag <strong>System Guardian</strong> to your Applications folder.</li>
                             <li>Launch the app &mdash; a shield icon appears in your menu bar.</li>
                             <li>Optionally enable "Launch at Login" in Settings.</li>
@@ -107,14 +107,7 @@
                 <details class="faq-item">
                     <summary>Does it require administrator privileges?</summary>
                     <div class="faq-answer">
-                        <p>No. System Guardian runs entirely in user space and does not require administrator access for normal operation.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary>Who is System Guardian designed for?</summary>
-                    <div class="faq-answer">
-                        <p>System Guardian is useful in resource-intensive workflows such as local AI model inference, development environments, and other compute-heavy applications where memory pressure changes quickly during active work.</p>
+                        <p>No. System Guardian runs entirely in user space. It accesses kernel telemetry through standard Mach APIs that are available to any user process, for local telemetry and optional user-initiated actions on eligible user processes. It cannot affect processes owned by root or other users.</p>
                     </div>
                 </details>
             </div>
@@ -152,7 +145,7 @@
                             <li><strong>Health header</strong> &mdash; A one-line status sentence</li>
                             <li><strong>Pressure detail</strong> &mdash; Free GB, Swap GB, and Compressed GB breakdown</li>
                             <li><strong>Process count and free GB</strong></li>
-                            <li><strong>Memory action</strong> buttons</li>
+                            <li><strong>Standard Memory Action / Intensive Memory Action</strong> buttons</li>
                             <li><strong>Top 5 Processes</strong> &mdash; Sorted by CPU or Memory, each with a submenu</li>
                             <li><strong>Open Dashboard</strong> &mdash; Opens the full dashboard window</li>
                             <li><strong>Settings</strong> and <strong>Quit</strong></li>
@@ -167,7 +160,8 @@
                             <thead><tr><th>Dot Color</th><th>Meaning</th></tr></thead>
                             <tbody>
                                 <tr><td>Green</td><td>Process is running normally</td></tr>
-                                <tr><td>Red</td><td>Process exceeds configured CPU/memory limits</td></tr>
+                                <tr><td>Yellow</td><td>Process is paused (you sent SIGSTOP)</td></tr>
+                                <tr><td>Red</td><td>Process is not responding or exceeds CPU/memory limits</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -239,7 +233,7 @@
                 <details class="faq-item">
                     <summary>What does "Free" really mean on macOS?</summary>
                     <div class="faq-answer">
-                        <p>On macOS, "free" memory includes both truly free pages and "speculative" pages (loaded speculatively, instantly reclaimable). System Guardian counts both as free because they are functionally available.</p>
+                        <p>On macOS, "free" memory includes both truly free pages and "speculative" pages (loaded speculatively, instantly changeable). System Guardian counts both as free because they are functionally available.</p>
                     </div>
                 </details>
 
@@ -251,61 +245,49 @@
                 </details>
             </div>
 
-            <!-- Memory Actions -->
-            <div class="faq-section" id="memory-cleaning">
-                <h2>Memory Actions</h2>
-                <p>macOS manages memory automatically. Memory actions adjust cache behavior and memory pressure; effects vary by workload.</p>
+            <!-- Memory Cleaning -->
+            <div class="faq-section" id="memory-memory actions">
+                <h2>Memory Cleaning</h2>
 
                 <details class="faq-item">
-                    <summary>What does the Standard action do?</summary>
+                    <summary>What does "Standard Memory Action" do?</summary>
                     <div class="faq-answer">
-                        <p>The Standard action calls <code>malloc_zone_pressure_relief(nil, 0)</code>, which asks all malloc zones in every running process to release pages they are holding but not actively using. This is a lightweight operation that completes in about 1 second.</p>
+                        <p>Standard Memory Action calls <code>malloc_zone_pressure_relief(nil, 0)</code>, which asks all malloc zones in every running process to release pages they are holding but not actively using. This is a lightweight operation that completes in about 1 second.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What does the Intensive action do?</summary>
+                    <summary>What does "Intensive Memory Action" do?</summary>
                     <div class="faq-answer">
-                        <p>The Intensive action performs a stronger memory action than the Standard action. It may take longer and can temporarily reduce responsiveness while it runs.</p>
+                        <p>Intensive Memory Action forces the kernel to evict cached/inactive pages by creating memory pressure:</p>
                         <ol>
-                            <li><strong>Runs multiple internal memory-pressure cycles</strong> with safety limits</li>
-                            <li><strong>Releases temporary allocations</strong> when each cycle completes</li>
-                            <li><strong>Refreshes memory metrics</strong> and reports completion in-app</li>
+                            <li><strong>Allocates</strong> memory chunks (64-512 MB each) up to 80% of current free memory or 50% of total RAM</li>
+                            <li><strong>Writes</strong> zeros to every allocated page (forces physical page assignment)</li>
+                            <li><strong>Releases</strong> all allocated memory</li>
+                            <li><strong>Calls</strong> <code>malloc_zone_pressure_relief</code> to clean up</li>
                         </ol>
-                        <p>Results vary by workload and current memory state.</p>
+                        <p>This takes 5-10 seconds and can change several GB of inactive/cached pages.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Is Intensive mode safe?</summary>
+                    <summary>Is Intensive Memory Action safe?</summary>
                     <div class="faq-answer">
-                        <p>Intensive mode is designed with safety limits, but it can temporarily increase resource usage while running. Use it only when needed and avoid running it during latency-sensitive work.</p>
+                        <p>Yes. Intensive Memory Action only forces the kernel to evict cached and inactive pages. It cannot corrupt active memory or crash running applications. Safety caps include: maximum 256 chunks, never more than 80% of free memory, never more than 50% of total RAM, and adaptive chunk sizes.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Why does the app use "Standard" and "Intensive" labels?</summary>
+                    <summary>Why does the app show "already clean"?</summary>
                     <div class="faq-answer">
-                        <p>The labels are intentionally plain:</p>
-                        <ul>
-                            <li><strong>Standard Memory Action</strong> &mdash; lightweight cache-pressure cycle.</li>
-                            <li><strong>Intensive Memory Action</strong> &mdash; stronger cycle with higher temporary system load.</li>
-                            <li><strong>Process Memory Limit Action</strong> &mdash; optional automatic force-quit action for eligible user processes above your configured limit.</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary>Why can a memory action report "no significant change"?</summary>
-                    <div class="faq-answer">
-                        <p>If an action reports "no significant change," the system may already be in a healthy state with little reclaimable cache at that moment.</p>
+                        <p>If a clean reports "already clean," it means macOS had very little changeable memory. This typically happens right after a previous clean or when the system is genuinely under low memory usage.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Can I trigger memory actions from the menu bar?</summary>
                     <div class="faq-answer">
-                        <p>Yes. You can trigger memory actions from the menu bar or from the Dashboard.</p>
+                        <p>Yes. The menu bar dropdown has two buttons: <strong>Standard Memory Action</strong> (Cmd+P) and <strong>Intensive Memory Action</strong> (Cmd+Shift+P). You can also use the buttons in the Dashboard.</p>
                     </div>
                 </details>
             </div>
@@ -317,7 +299,7 @@
                 <details class="faq-item">
                     <summary>How is CPU usage calculated?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian reads per-core tick counts from <code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code> twice (with a delay), then calculates the delta between samples. This provides a near real-time CPU estimate based on sample deltas, not cumulative averages. Reported values include User, System, and Total percentages.</p>
+                        <p>System Guardian reads per-core tick counts from <code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code> twice (with a delay), then calculates the delta between samples. This gives accurate instantaneous CPU usage rather than cumulative averages. Reported values include User, System, and Total percentages.</p>
                     </div>
                 </details>
 
@@ -365,7 +347,7 @@
                 <details class="faq-item">
                     <summary>Why does GPU show 0%?</summary>
                     <div class="faq-answer">
-                        <p>If your computer's GPU is idle (no rendering, no compute), utilization will naturally be 0%. This is normal. GPU utilization spikes during video playback, 3D rendering, Metal compute workloads, or window compositor activity.</p>
+                        <p>If your Mac's GPU is idle (no rendering, no compute), utilization will naturally be 0%. This is normal. GPU utilization spikes during video playback, 3D rendering, Metal compute workloads, or window compositor activity.</p>
                     </div>
                 </details>
             </div>
@@ -377,58 +359,61 @@
                 <details class="faq-item">
                     <summary>How does System Guardian find running processes?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian lists running processes with their current CPU and memory usage so you can identify heavy resource consumers.</p>
+                        <p>System Guardian runs <code>/bin/ps aux</code> (without using a shell) and parses the output to extract PID, CPU%, memory (RSS), and the process command name. It scans the top 15 processes sorted by your chosen metric.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Can I force quit a process from the app?</summary>
+                    <summary>How is "Not Responding" detected?</summary>
                     <div class="faq-answer">
-                        <p>Yes. You can force quit supported user processes from the app interface. Unsaved work in that process may be lost.</p>
+                        <p>System Guardian runs <code>/usr/bin/lsappinfo</code> and looks for apps reported as "Not Responding." This is the same mechanism the Finder and Dock use. Only GUI applications report this status.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Pause" do?</summary>
+                    <div class="faq-answer">
+                        <p>Pausing sends <code>SIGSTOP</code> to the process, suspending its execution. The process remains in memory but stops consuming CPU. It appears with a yellow dot. Useful for temporarily stopping a runaway process without losing its state.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does "Resume" do?</summary>
+                    <div class="faq-answer">
+                        <p>Resuming sends <code>SIGCONT</code> to a paused process, which resumes execution from exactly where it stopped. All memory and state are preserved.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>What does "Force Quit" do?</summary>
                     <div class="faq-answer">
-                        <p>Force Quit immediately terminates the selected process. Any unsaved data in that process will be lost.</p>
+                        <p>Force Quit sends <code>SIGKILL</code> to the process, which immediately terminates it. This cannot be caught or ignored &mdash; any unsaved data will be lost.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Can I manage system processes?</summary>
                     <div class="faq-answer">
-                        <p>You can only manage supported processes for your current user account. Critical system processes are protected.</p>
+                        <p>You can only manage processes that run under your user account. System-owned processes (like <code>kernel_task</code>, <code>WindowServer</code>, or <code>launchd</code>) require root privileges and are protected.</p>
                     </div>
                 </details>
             </div>
 
-            <!-- Automation & Alerts -->
-            <div class="faq-section" id="automation-alerts">
-                <h2>Automation & Alerts</h2>
+            <!-- Optional Automation -->
+            <div class="faq-section" id="automated-protections">
+                <h2>Optional Automation</h2>
 
                 <details class="faq-item">
-                    <summary>What is Low Memory Automation (Optional)?</summary>
+                    <summary>What is Low RAM Protection?</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian can notify you when available memory drops below your configured threshold and optionally run a memory action.</p>
+                        <p>When enabled (Settings &rarr; General), System Guardian automatically triggers a memory clean when your free RAM drops below a configurable threshold. You choose the GB threshold and memory actions method (Standard Memory Action or Intensive Memory Action).</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What is Auto Force Quit (Advanced)?</summary>
+                    <summary>What is Kill Runaway Process?</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian can apply an automated process memory-limit action to selected eligible user processes based on your configured limit and policy mode. Protected system processes are excluded. Process control scope depends on macOS permissions and distribution type (for example App Sandbox vs Developer ID).</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary>What Process Memory Limit Action policy modes are available?</summary>
-                    <div class="faq-answer">
-                        <p>System Guardian supports two policy modes in Settings &rarr; Advanced for Process Memory Limit Action:</p>
-                        <ul>
-                            <li><strong>Allowlist Only (default)</strong> &mdash; only processes matching your allowlist entries are eligible.</li>
-                            <li><strong>Never-Kill List</strong> &mdash; eligible processes above threshold are killable except entries in your never-kill list.</li>
-                        </ul>
+                        <p>When enabled (Settings &rarr; Advanced), System Guardian automatically force-quits any single process that exceeds your per-process memory limit. Protected processes (Finder, Dock, WindowServer, loginwindow, etc.) are never auto-killed.</p>
                     </div>
                 </details>
 
@@ -442,37 +427,37 @@
                 <details class="faq-item">
                     <summary>Are there cooldowns to prevent alert spam?</summary>
                     <div class="faq-answer">
-                        <p>Yes. Cooldown periods are applied to automated actions and alerts to reduce repeated notifications and repeated actions.</p>
+                        <p>Yes. Cooldown periods: Low RAM auto-clean (60s), auto-kill (30s per process), CPU spike alert (120s), and scheduled memory actions (5 minutes minimum).</p>
                     </div>
                 </details>
             </div>
 
-            <!-- Scheduled Actions -->
-            <div class="faq-section" id="scheduled-cleaning">
-                <h2>Scheduled Actions</h2>
+            <!-- Scheduled Cleaning -->
+            <div class="faq-section" id="scheduled-memory actions">
+                <h2>Scheduled Cleaning</h2>
 
                 <details class="faq-item">
-                    <summary>How do scheduled actions work?</summary>
+                    <summary>How does scheduled memory actions work?</summary>
                     <div class="faq-answer">
-                        <p>System Guardian can run memory actions on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
+                        <p>System Guardian can automatically clean memory on a recurring schedule (Settings &rarr; Advanced). Two modes:</p>
                         <ul>
-                            <li><strong>Interval Mode</strong> &mdash; Cycles at a fixed interval (15 minutes to 8 hours)</li>
-                            <li><strong>Time-of-Day Mode</strong> &mdash; Runs once per day at a specific time you set</li>
+                            <li><strong>Interval Mode</strong> &mdash; Cleans at a fixed interval (15 minutes to 8 hours)</li>
+                            <li><strong>Time-of-Day Mode</strong> &mdash; Cleans once per day at a specific time you set</li>
                         </ul>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Can I choose the action method for scheduled actions?</summary>
+                    <summary>Can I choose the memory actions method for scheduled cleans?</summary>
                     <div class="faq-answer">
-                        <p>Yes. You can choose the scheduled memory-action method independently from low-memory automation settings.</p>
+                        <p>Yes. You can pick either "Clean" (quick) or "Intensive Memory Action" (aggressive) for scheduled memory actions, independent of the method used for Low RAM Protection.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Will a scheduled action run if one is already in progress?</summary>
+                    <summary>Will scheduled memory actions run if a clean is already in progress?</summary>
                     <div class="faq-answer">
-                        <p>No. If a manual or automatic action is already running, the scheduled action is skipped. There is also a 5-minute cooldown between scheduled actions.</p>
+                        <p>No. If a manual or automatic clean is already running, the scheduled clean is skipped. There is also a 5-minute cooldown between scheduled cleans.</p>
                     </div>
                 </details>
             </div>
@@ -487,8 +472,8 @@
                         <table>
                             <thead><tr><th>Notification</th><th>Trigger</th></tr></thead>
                             <tbody>
-                                <tr><td><strong>Low Memory Automation Alert</strong></td><td>Available memory dropped below threshold and a memory action was triggered</td></tr>
-                                <tr><td><strong>Process Memory Limit Action</strong></td><td>A configured process memory limit was exceeded</td></tr>
+                                <tr><td><strong>Low RAM Alert</strong></td><td>Free memory dropped below threshold and auto-clean triggered</td></tr>
+                                <tr><td><strong>Process Auto-Killed</strong></td><td>A runaway process exceeded your memory limit</td></tr>
                                 <tr><td><strong>CPU Spike Alert</strong></td><td>CPU stayed above threshold for the configured duration</td></tr>
                             </tbody>
                         </table>
@@ -505,7 +490,7 @@
                 <details class="faq-item">
                     <summary>Can I disable specific notification types?</summary>
                     <div class="faq-answer">
-                        <p>Each automation feature has its own toggle. You can disable specific automation and alert types independently.</p>
+                        <p>Each protection feature has its own toggle. Disabling "CPU Spike Alert" stops CPU notifications. Disabling "Kill Runaway Process" stops auto-kill notifications. Disabling "Low RAM Protection" stops low-RAM notifications.</p>
                     </div>
                 </details>
             </div>
@@ -517,7 +502,7 @@
                 <details class="faq-item">
                     <summary>Launch at Login</summary>
                     <div class="faq-answer">
-                        <p>When enabled, System Guardian automatically starts when you log into your computer. This uses the <code>SMAppService</code> API (the modern macOS method). Verify in System Settings &rarr; General &rarr; Login Items &amp; Extensions.</p>
+                        <p>When enabled, System Guardian automatically starts when you log into your Mac. This uses the <code>SMAppService</code> API (the modern macOS method). Verify in System Settings &rarr; General &rarr; Login Items &amp; Extensions.</p>
                     </div>
                 </details>
 
@@ -541,9 +526,9 @@
                 <h2>Settings &mdash; Advanced Tab</h2>
 
                 <details class="faq-item">
-                    <summary>Auto Force Quit (Advanced)</summary>
+                    <summary>Kill Runaway Process</summary>
                     <div class="faq-answer">
-                        <p>Per-process memory limit with an enable/disable toggle. Selected eligible user processes over this limit may be force quit (with protected system processes excluded).</p>
+                        <p>Per-process memory limit with an enable/disable toggle. Any process exceeding this limit is force-quit (with protected system processes excluded).</p>
                     </div>
                 </details>
 
@@ -562,16 +547,9 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Scheduled Memory Actions</summary>
+                    <summary>Scheduled RAM Cleaning</summary>
                     <div class="faq-answer">
-                        <p>Enable and configure automatic memory actions on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary>What is Diagnostics Snapshot?</summary>
-                    <div class="faq-answer">
-                        <p>In Settings &rarr; Advanced, Diagnostics shows the latest automated-action timestamps and reasons (Low Memory Automation action, scheduled action, process action, CPU spike alert). Use "Copy Diagnostics Snapshot" to export this information for support.</p>
+                        <p>Enable and configure automatic memory memory actions on a schedule. Choose between interval mode (15 min to 8 hours) or time-of-day mode (once daily at a specific time).</p>
                     </div>
                 </details>
             </div>
@@ -583,7 +561,7 @@
                 <details class="faq-item">
                     <summary>What is the Events Log?</summary>
                     <div class="faq-answer">
-                        <p>A timeline of actions and alerts. Each event has an icon, a message, and a relative timestamp. The log keeps the 50 most recent events in memory (ring buffer). Events are not persisted to disk.</p>
+                        <p>A timeline of actions and alerts. Each event has an icon (blue for info, orange for warning, red for auto-kill), a message, and a relative timestamp. The log keeps the 50 most recent events in memory (ring buffer). Events are not persisted to disk.</p>
                     </div>
                 </details>
 
@@ -591,11 +569,11 @@
                     <summary>What events are logged?</summary>
                     <div class="faq-answer">
                         <ul>
-                            <li>Manual memory actions</li>
-                            <li>Scheduled memory action triggered + result</li>
-                            <li>Low Memory Automation action triggered</li>
-                            <li>Manual process force quit actions</li>
-                            <li>Automated process memory-limit actions</li>
+                            <li>Manual quick clean and deep clean</li>
+                            <li>Scheduled clean triggered + result</li>
+                            <li>Low RAM auto-clean triggered</li>
+                            <li>Process paused, resumed, or force-quit</li>
+                            <li>Runaway process auto-killed</li>
                             <li>CPU spike alert triggered</li>
                         </ul>
                     </div>
@@ -609,11 +587,11 @@
                 <details class="faq-item">
                     <summary>What are hardware-aware defaults?</summary>
                     <div class="faq-answer">
-                        <p>On first launch, System Guardian detects your computer's total RAM and core count and sets sensible default thresholds. Defaults are tuned to the detected hardware profile.</p>
+                        <p>On first launch, System Guardian detects your Mac's total RAM and core count and sets sensible default thresholds. An 8 GB MacBook Air gets different defaults than a 192 GB Mac Pro.</p>
                         <table>
                             <thead><tr><th>Setting</th><th>Default Formula</th><th>Example (32 GB / 10 cores)</th></tr></thead>
                             <tbody>
-                                <tr><td>Low Memory threshold</td><td>15% of total RAM (min 2 GB)</td><td>4.8 GB</td></tr>
+                                <tr><td>Low RAM threshold</td><td>15% of total RAM (min 2 GB)</td><td>4.8 GB</td></tr>
                                 <tr><td>Per-process memory limit</td><td>25% of total RAM (min 2 GB)</td><td>8 GB</td></tr>
                                 <tr><td>CPU highlight</td><td>12.5% of total cores (min 200%)</td><td>200%</td></tr>
                             </tbody>
@@ -643,7 +621,7 @@
                 <details class="faq-item">
                     <summary>Does System Guardian connect to the internet?</summary>
                     <div class="faq-answer">
-                        <p>No. System Guardian makes <strong>zero network requests</strong>. There is no analytics, no telemetry, no update checks, no cloud sync. Your system data never leaves your computer.</p>
+                        <p>No. System Guardian makes <strong>zero network requests</strong>. There is no analytics, no telemetry, no update checks, no cloud sync. Your system data never leaves your Mac.</p>
                     </div>
                 </details>
 
@@ -651,9 +629,10 @@
                     <summary>What data does it access?</summary>
                     <div class="faq-answer">
                         <ul>
-                            <li><strong>System statistics APIs</strong> &mdash; Memory and CPU metrics</li>
+                            <li><strong>Mach kernel statistics</strong> &mdash; Memory and CPU metrics</li>
                             <li><strong>IOKit GPU telemetry</strong> &mdash; GPU utilization and VRAM (read-only)</li>
-                            <li><strong>Process list</strong> &mdash; Running process resource usage</li>
+                            <li><strong>Process list</strong> &mdash; Via <code>/bin/ps</code> (only your processes)</li>
+                            <li><strong>App responsiveness</strong> &mdash; Via <code>/usr/bin/lsappinfo</code></li>
                         </ul>
                     </div>
                 </details>
@@ -680,8 +659,9 @@
                                 <tr><td>CPU</td><td>Mach kernel</td><td><code>host_processor_info(PROCESSOR_CPU_LOAD_INFO)</code></td></tr>
                                 <tr><td>GPU</td><td>IOKit</td><td><code>IOAccelerator</code> &rarr; <code>PerformanceStatistics</code></td></tr>
                                 <tr><td>Swap</td><td>sysctl</td><td><code>vm.swapusage</code></td></tr>
-                                <tr><td>Processes</td><td>System APIs</td><td>Usage listing and manual actions</td></tr>
-                                <tr><td>Memory Actions</td><td>System memory APIs</td><td>User-triggered and optional automated actions</td></tr>
+                                <tr><td>Processes</td><td>POSIX</td><td><code>/bin/ps</code> via <code>Process()</code></td></tr>
+                                <tr><td>Standard Memory Action</td><td>libc</td><td><code>malloc_zone_pressure_relief</code></td></tr>
+                                <tr><td>Intensive Memory Action</td><td>libc</td><td><code>malloc</code> + <code>memset</code> + <code>free</code></td></tr>
                                 <tr><td>Login Item</td><td>ServiceMgmt</td><td><code>SMAppService.mainApp</code></td></tr>
                                 <tr><td>Notifications</td><td>UserNotifications</td><td><code>UNUserNotificationCenter</code></td></tr>
                             </tbody>
@@ -704,8 +684,8 @@
                             <li><strong>SystemGuardianApp</strong> &mdash; App entry point, NSStatusItem, menu bar</li>
                             <li><strong>AppState</strong> &mdash; Central @Published state hub, polling, memory actions</li>
                             <li><strong>SystemMonitor</strong> &mdash; Kernel APIs: host_statistics64, host_processor_info, IOKit</li>
-                            <li><strong>ProcessManager</strong> &mdash; Process listing and control actions</li>
-                            <li><strong>Watchdog</strong> &mdash; Optional automation, notifications</li>
+                            <li><strong>ProcessManager</strong> &mdash; /bin/ps parsing, SIGSTOP/SIGCONT/SIGKILL</li>
+                            <li><strong>Watchdog</strong> &mdash; Automated protection, notifications</li>
                             <li><strong>DashboardView</strong> &mdash; SwiftUI dashboard with Swift Charts</li>
                             <li><strong>SettingsView</strong> &mdash; General + Advanced settings tabs</li>
                         </ul>
@@ -725,23 +705,23 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary>Memory actions do not always show large gains</summary>
+                    <summary>Memory memory actions doesn't change much</summary>
                     <div class="faq-answer">
-                        <p>This can be normal when the system is already in a healthy state. Results depend on current workload and reclaimable cache.</p>
+                        <p>This is normal if macOS is already managing memory efficiently. On Apple Silicon Macs with unified memory, the kernel aggressively compresses and manages pages. Standard Memory Action typically changes 0.1-1 GB, while Intensive Memory Action can change 1-5 GB depending on cached/inactive memory.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>A process still appears high usage after action</summary>
+                    <summary>A process shows "Not Responding" but works fine</summary>
                     <div class="faq-answer">
-                        <p>Some workloads naturally remain high for a while (for example compiling or rendering). Wait for the next poll cycles and verify usage trends over time.</p>
+                        <p>Some apps occasionally appear as "Not Responding" during heavy computation (e.g., video rendering, compiling). This is detected by the same mechanism macOS uses. If the app is actually working, you can safely ignore the status &mdash; it will clear once the task finishes.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
                     <summary>Can I monitor processes owned by other users?</summary>
                     <div class="faq-answer">
-                        <p>No. System Guardian is limited to supported processes under your current user account and cannot control protected system services.</p>
+                        <p>No. System Guardian can only see and manage processes running under your user account. System-owned processes appear in the list but cannot be paused or killed without root privileges.</p>
                     </div>
                 </details>
 
