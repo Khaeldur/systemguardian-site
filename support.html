@@ -46,10 +46,12 @@
         <!-- Quick Links -->
         <div class="legal-card">
             <h2>Quick Help</h2>
+            <p>System Guardian is useful for resource-intensive workflows such as local AI model inference, development environments, and other compute-heavy applications.</p>
+            <p>It provides real-time visibility and optional automation for memory actions while keeping all processing on-device.</p>
             <p>Find answers fast with these resources:</p>
             <ul>
                 <li><a href="faq.html">Frequently Asked Questions</a> — Detailed answers covering every feature</li>
-                <li><a href="https://github.com/Khaeldur/issues" target="_blank" rel="noopener">GitHub Issues</a> — Report bugs or request features</li>
+                <li><a href="https://github.com/Khaeldur" target="_blank" rel="noopener">GitHub Issues</a> — Report bugs or request features</li>
                 <li><a href="faq.html#troubleshooting">Troubleshooting Guide</a> — Step-by-step fixes for common issues</li>
             </ul>
         </div>
@@ -94,12 +96,27 @@
 
             <h3>5. Reinstall the App</h3>
             <div class="tip">
-                If issues persist, delete System Guardian from your Applications folder and reinstall it from the Mac App Store. Your settings (stored in UserDefaults) will be preserved.
+                If issues persist, delete System Guardian from your Applications folder and reinstall it from the App Store. Your settings (stored in UserDefaults) will be preserved.
             </div>
 
-            <h3>6. Memory Action Results Vary</h3>
+            <h3>6. Memory Actions Show Minimal Change</h3>
             <div class="tip">
-                This is normal on Apple Silicon Macs with efficient memory management. Standard and Intensive memory actions may change cache behavior differently depending on current workload. If the app reports no significant change, macOS may already be managing memory efficiently for that moment.
+                This can be normal when the system is already in a healthy state. If the app reports no significant change, there may be little reclaimable cache at that moment.
+            </div>
+
+            <h3>7. Export a Diagnostics Snapshot</h3>
+            <div class="tip">
+                Open <strong>Settings &rarr; Advanced &rarr; Diagnostics</strong> and click <strong>Copy Diagnostics Snapshot</strong>. Include the snapshot when contacting support so we can review recent automated actions and settings.
+            </div>
+
+            <h3>8. Process Memory Limit Action Is Not Behaving as Expected</h3>
+            <div class="tip">
+                In <strong>Settings &rarr; Advanced</strong>, verify your Process Memory Limit Action policy mode and lists:
+                <ul>
+                    <li><strong>Allowlist Only (default)</strong>: only matching entries are eligible.</li>
+                    <li><strong>Never-Kill List</strong>: matching entries are always skipped.</li>
+                </ul>
+                Process control scope can vary by distribution and macOS sandbox permissions.
             </div>
 
             <h3>Still Need Help?</h3>
@@ -115,7 +132,7 @@
             <h2>System Requirements</h2>
             <ul>
                 <li><strong>macOS 13.0</strong> (Ventura) or later</li>
-                <li>Apple Silicon Mac (M1 or later)</li>
+                <li>Apple Silicon (M1 or later)</li>
                 <li>~6 MB disk space</li>
                 <li>~15&ndash;25 MB RAM while running</li>
             </ul>
